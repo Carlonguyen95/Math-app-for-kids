@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Math 4 Kids</string>
+    <string name="title">Math 4 Kids</string>
+    <string name="gameStartText">Spiel beginnen</string>
+    <string name="gameStatsText">Statistiken</string>
+    <string name="gameOptionsText">Optionen</string>
+
+    // Verdier til settings
+    <string name="changeDiff">Schwierigkeit ändern</string>
+    <string name="changeLanguage">Sprache ändern</string>
+    <string name="changeLocaleNO">Norwegisch</string>
+    <string name="changeLocaleDE">Deutsch</string>
+    <string name="easymode">Einfach (5)</string>
+    <string name="mediummode">Mittel (10)</string>
+    <string name="hardmode">Hart (25)</string>
+</resources>

@@ -1,0 +1,30 @@
+<resources>
+    // Verdier til startup skjermbilde
+    <string name="app_name">Math 4 Kids</string>
+    <string name="title">Math 4 Kids</string>
+    <string name="gameStartText">Start spill</string>
+    <string name="gameStatsText">Statistikk</string>
+    <string name="gameOptionsText">Preferanser</string>
+
+    // Verdier til kalkulatoren
+    <string name="calcBtn1">1</string>
+    <string name="calcBtn2">2</string>
+    <string name="calcBtn3">3</string>
+    <string name="calcBtn4">4</string>
+    <string name="calcBtn5">5</string>
+    <string name="calcBtn6">6</string>
+    <string name="calcBtn7">7</string>
+    <string name="calcBtn8">8</string>
+    <string name="calcBtn9">9</string>
+    <string name="calcBtn0">0</string>
+    <string name="calcBtnOK">OK</string>
+
+    // Verdier til settings
+    <string name="changeDiff">Endre vanskelighetsgrad</string>
+    <string name="changeLanguage">Endre språk</string>
+    <string name="changeLocaleNO">Norsk</string>
+    <string name="changeLocaleDE">Tysk</string>
+    <string name="easymode">Lett (5)</string>
+    <string name="mediummode">Medium (10)</string>
+    <string name="hardmode">Vanskelig (25)</string>
+</resources>
