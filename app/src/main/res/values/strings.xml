@@ -1,7 +1,7 @@
 <resources>
     // Verdier til startup skjermbilde
-    <string name="app_name">Math 4 Kids</string>
-    <string name="title">Math 4 Kids</string>
+    <string name="app_name">Carlos Matematikk</string>
+    <string name="title">MATEMATIKK</string>
     <string name="gameStartText">Start spill</string>
     <string name="gameStatsText">Statistikk</string>
     <string name="gameOptionsText">Preferanser</string>

@@ -17,7 +17,7 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/mathQuestionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -25,7 +25,9 @@
         android:layout_marginTop="80dp"
         android:textSize="30sp"
         android:layout_below="@id/my_toolbar"
-        android:text="TextView"/>
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="@color/math_question_color"/>
 
     <EditText
         android:id="@+id/edText1"
@@ -35,7 +37,7 @@
         android:layout_alignParentStart="true"
         android:layout_above="@id/btn_2"
         android:inputType="textPersonName"
-        android:textAlignment="textEnd"
+        android:textAlignment="center"
         android:textSize="30sp"/>
 
     <Button android:textSize="20sp"

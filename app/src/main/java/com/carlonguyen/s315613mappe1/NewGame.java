@@ -6,25 +6,40 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Random;
 
 public class NewGame extends AppCompatActivity {
 
     Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_clear, btn_ok;
     EditText ed1;
     float Value1, Value2;
+    String[] mathQs;
+    String randomMathQs;
+    TextView tw1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game);
 
+        // Kode relatert til toolbaren
         Toolbar gameToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(gameToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // Henter mattespørsmålene fra arrays.xml og displayer dem random på skjermen
+        mathQs = getResources().getStringArray(R.array.stringMathQs);
+        randomMathQs = mathQs[new Random().nextInt(mathQs.length)];
+        tw1 = (TextView)findViewById(R.id.mathQuestionTextView);
+        tw1.setText(randomMathQs);
+
+        // Funksjonalitet til kalkulatoren
         btn_1 = (Button)findViewById(R.id.btn_1);
         btn_2 = (Button)findViewById(R.id.btn_2);
         btn_3 = (Button)findViewById(R.id.btn_3);
