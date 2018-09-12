@@ -1,27 +1,33 @@
 package com.carlonguyen.s315613mappe1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class NewGame extends AppCompatActivity {
 
     Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_clear, btn_ok;
     EditText ed1;
-    float Value1, Value2;
-    String[] mathQs;
+    List<String> listMathQs;
     String randomMathQs;
     TextView tw1;
+
+    String[] mathAs;
+    String mathSolution;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +40,10 @@ public class NewGame extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Henter mattespørsmålene fra arrays.xml og displayer dem random på skjermen
-        mathQs = getResources().getStringArray(R.array.stringMathQs);
-        randomMathQs = mathQs[new Random().nextInt(mathQs.length)];
+        listMathQs = new ArrayList();
+        listMathQs = Arrays.asList(getResources().getStringArray(R.array.stringMathQs));
+        final int randomIndex = new Random().nextInt(listMathQs.size());
+        randomMathQs = listMathQs.get(randomIndex);
         tw1 = (TextView)findViewById(R.id.mathQuestionTextView);
         tw1.setText(randomMathQs);
 
@@ -52,6 +60,8 @@ public class NewGame extends AppCompatActivity {
         btn_0 = (Button)findViewById(R.id.btn_0);
         btn_clear = (Button)findViewById(R.id.btn_clear);
         ed1 = (EditText)findViewById(R.id.edText1);
+        ed1.setInputType(InputType.TYPE_NULL);
+        btn_ok = (Button)findViewById(R.id.btn_ok);
 
         btn_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +133,22 @@ public class NewGame extends AppCompatActivity {
                 ed1.getText().clear();
             }
         });
+
+        // Denne knappen sjekker svaret som blir avgitt av spilleren er riktig eller galt ift mattespørsmålet
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newMathQuestion();
+            }
+        });
+    }
+
+    public void newMathQuestion(){
+        final int randomIndex = new Random().nextInt(listMathQs.size());
+        randomMathQs = listMathQs.get(randomIndex);
+        tw1 = (TextView)findViewById(R.id.mathQuestionTextView);
+        tw1.setText(randomMathQs);
+        ed1.getText().clear();
     }
 
     @Override
@@ -141,9 +167,12 @@ public class NewGame extends AppCompatActivity {
                 return true;
         }
 
-        if(id == R.id.game_toolbar){
-            Toast.makeText(NewGame.this, "Action clicked", Toast.LENGTH_LONG).show();
+        if(id == R.id.toolbar_settings_icon){
+            Toast.makeText(NewGame.this, "Settings clicked", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, Settings.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

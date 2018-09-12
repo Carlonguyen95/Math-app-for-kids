@@ -4,6 +4,7 @@
     <string name="gameStartText">Spiel beginnen</string>
     <string name="gameStatsText">Statistiken</string>
     <string name="gameOptionsText">Optionen</string>
+    <string name="textQuestion">Was ist die Antwort auf:</string>
 
     // Verdier til settings
     <string name="changeDiff">Schwierigkeit ändern</string>

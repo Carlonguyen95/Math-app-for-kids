@@ -17,19 +17,22 @@
     <ImageButton
         android:id="@+id/gameStartBtn"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:src="@drawable/playlogo" />
+        android:layout_height="115dp"
+        android:background="@drawable/home_button_shape"
+        android:src="@drawable/playlogo1" />
 
     <ImageButton
         android:id="@+id/gameStatsBtn"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="115dp"
+        android:background="@drawable/home_button_shape"
         android:src="@drawable/statslogo" />
 
     <ImageButton
         android:id="@+id/gameSettingsBtn"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:src="@drawable/settingslogo" />
+        android:layout_height="115dp"
+        android:background="@drawable/home_button_shape"
+        android:src="@drawable/settingslogo1" />
 
 </LinearLayout>

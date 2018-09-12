@@ -1,9 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="stringMathQs">
-        <item>2 + 2</item>
-        <item>4 * 2</item>
-        <item>25 / 5</item>
-        <item>5 + 5</item>
+        <item name="1">2 + 2</item>
+        <item name="2">5 + 7</item>
+        <item name="3">10 + 3</item>
+
+    </array>
+
+    <array name="stringMathAs">
+        <item name="1">4</item>
+        <item name="2">12</item>
+        <item name="3">13</item>
+        <item name="4">10</item>
+        <item name="5">11</item>
+
+        <item name="6">5</item>
+        <item name="7">6</item>
+        <item name="8">10</item>
+        <item name="9">2</item>
+        <item name="10">4</item>
+
+        <item name="11">5</item>
+        <item name="12">16</item>
+        <item name="13">9</item>
+        <item name="14">100</item>
+        <item name="15">45</item>
+
+        <item name="16">5</item>
+        <item name="17">5</item>
+        <item name="18">4</item>
+        <item name="19">1</item>
+        <item name="20">3</item>
+
+        <item name="21">90</item>
+        <item name="22">8</item>
+        <item name="23">63</item>
+        <item name="24">8</item>
+        <item name="25">32</item>
     </array>
 </resources>

@@ -5,7 +5,7 @@
     tools:context=".MainActivity">
 
     <item
-        android:id="@+id/game_toolbar"
+        android:id="@+id/toolbar_settings_icon"
         android:orderInCategory="300"
         android:icon="@drawable/navbarsettinglogo"
         android:title="@string/title"
