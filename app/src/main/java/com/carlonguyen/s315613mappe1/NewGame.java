@@ -10,11 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -25,7 +27,9 @@ public class NewGame extends AppCompatActivity {
     List<String> listMathQs;
     String randomMathQs;
     TextView tw1;
-
+    TextView textQuestionTW;
+    RadioButton rb_setting;
+    int mathCounter;
     String[] mathAs;
     String mathSolution;
 
@@ -39,15 +43,19 @@ public class NewGame extends AppCompatActivity {
         setSupportActionBar(gameToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Henter mattespørsmålene fra arrays.xml og displayer dem random på skjermen
+        // Henter vanskelighetsgrad
+        //rb_setting = (RadioButton)findViewById(R.id.)
+
+        // Henter mattespørsmålene fra arrays.xml og putter dem i ArrayList
         listMathQs = new ArrayList();
         listMathQs = Arrays.asList(getResources().getStringArray(R.array.stringMathQs));
-        final int randomIndex = new Random().nextInt(listMathQs.size());
-        randomMathQs = listMathQs.get(randomIndex);
-        tw1 = (TextView)findViewById(R.id.mathQuestionTextView);
-        tw1.setText(randomMathQs);
+        mathCounter = new Random().nextInt(listMathQs.size()-1);
 
-        // Funksjonalitet til kalkulatoren
+        textQuestionTW = (TextView)findViewById(R.id.textQuestion);
+        tw1 = (TextView)findViewById(R.id.mathQuestionTextView);
+        tw1.setText(listMathQs.get(mathCounter));
+
+        // Henter knapper til kalkulator
         btn_1 = (Button)findViewById(R.id.btn_1);
         btn_2 = (Button)findViewById(R.id.btn_2);
         btn_3 = (Button)findViewById(R.id.btn_3);
@@ -141,14 +149,18 @@ public class NewGame extends AppCompatActivity {
                 newMathQuestion();
             }
         });
+
     }
 
     public void newMathQuestion(){
-        final int randomIndex = new Random().nextInt(listMathQs.size());
-        randomMathQs = listMathQs.get(randomIndex);
-        tw1 = (TextView)findViewById(R.id.mathQuestionTextView);
-        tw1.setText(randomMathQs);
-        ed1.getText().clear();
+        mathCounter = new Random().nextInt(listMathQs.size()-1);
+        if(listMathQs.size() > 0) {
+            tw1.setText(listMathQs.get(mathCounter));
+            ed1.getText().clear();
+        }else{
+            ed1.getText().clear();
+            textQuestionTW.setText(ed1.getText() + "Finito!");
+        }
     }
 
     @Override
