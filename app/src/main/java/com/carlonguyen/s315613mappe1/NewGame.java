@@ -46,8 +46,12 @@ public class NewGame extends AppCompatActivity {
         // Henter mattespørsmålene og svar fra arrays.xml og putter dem i ArrayList
         listMathQs = new ArrayList();
         listMathAs = new ArrayList();
-        listMathAs = Arrays.asList(getResources().getStringArray(R.array.stringMathAs));
-        listMathQs = Arrays.asList(getResources().getStringArray(R.array.stringMathQs));
+
+        listMathQs.addAll(Arrays.asList(getResources().getStringArray(R.array.stringMathQs)));
+        listMathAs.addAll(Arrays.asList(getResources().getStringArray(R.array.stringMathAs)));
+
+        //listMathAs = Arrays.asList(getResources().getStringArray(R.array.stringMathAs));
+        //listMathQs = Arrays.asList(getResources().getStringArray(R.array.stringMathQs));
         mathCounter = new Random().nextInt(listMathQs.size()-1);
 
         textQuestionTW = (TextView)findViewById(R.id.textQuestion);
@@ -162,6 +166,8 @@ public class NewGame extends AppCompatActivity {
                 System.out.println(mathCounter);
                 System.out.println(listMathQs.get(mathCounter));
                 System.out.println(listMathAs.get(mathCounter));
+                System.out.println("mathcounter: " + mathCounter);
+                System.out.println("mathcounter1: " + mathCounter1);
 
                 listMathQs.remove(mathCounter);
                 mathCounter = mathCounter1;
