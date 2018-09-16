@@ -49,7 +49,7 @@
         tools:textAlignment="center"/>
 
     <RadioGroup
-        android:id="@+id/rg_settings"
+        android:id="@+id/btnrg_settings"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:checkedButton="@id/btn_easymode">

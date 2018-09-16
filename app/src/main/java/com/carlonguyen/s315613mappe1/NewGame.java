@@ -1,18 +1,16 @@
 package com.carlonguyen.s315613mappe1;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,14 +19,16 @@ import java.util.Random;
 
 public class NewGame extends AppCompatActivity {
 
-    Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_clear, btn_ok;
-    EditText ed1;
-    List<String> listMathQs;
-    List<String> listMathAs;
-    TextView tw1;
-    TextView textQuestionTW;
-    RadioButton rb_setting;
-    int mathCounter;
+    private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_clear, btn_ok;
+    private EditText ed1;
+    private List<String> listMathQs;
+    private List<String> listMathAs;
+    private TextView tw1;
+    private TextView textQuestionTW;
+    private int mathCounter;
+    private int difficulty;
+    private RadioButton btn_easymode1, btn_mediummode1, btn_hardmode1;
+    private RadioGroup radioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +40,6 @@ public class NewGame extends AppCompatActivity {
         setSupportActionBar(gameToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Henter vanskelighetsgrad
-        //rb_setting = (RadioButton)findViewById(R.id.)
-
         // Henter mattespørsmålene og svar fra arrays.xml og putter dem i ArrayList
         listMathQs = new ArrayList();
         listMathAs = new ArrayList();
@@ -52,7 +49,6 @@ public class NewGame extends AppCompatActivity {
 
         //listMathAs = Arrays.asList(getResources().getStringArray(R.array.stringMathAs));
         //listMathQs = Arrays.asList(getResources().getStringArray(R.array.stringMathQs));
-        mathCounter = new Random().nextInt(listMathQs.size()-1);
 
         textQuestionTW = (TextView)findViewById(R.id.textQuestion);
         tw1 = (TextView)findViewById(R.id.mathQuestionTextView);
@@ -153,19 +149,40 @@ public class NewGame extends AppCompatActivity {
             }
         });
 
+        // Henter vanskelighetsgrad
+        radioGroup = (RadioGroup)findViewById(R.id.btnrg_settings);
+        btn_easymode1 = (RadioButton)findViewById(R.id.btn_easymode);
+        btn_mediummode1 = (RadioButton)findViewById(R.id.btn_mediummode);
+        btn_hardmode1 = (RadioButton)findViewById(R.id.btn_hardmode);
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == R.id.btn_easymode){
+                    difficulty = 4;
+                    mathCounter = new Random().nextInt(difficulty);
+                }else if(checkedId == R.id.btn_mediummode){
+                    difficulty = 9;
+                    mathCounter = new Random().nextInt(difficulty);
+                }else{
+                    difficulty = 24;
+                    mathCounter = new Random().nextInt(difficulty);
+                }
+            }
+        });
+
     }
 
     public void newMathQuestion(){
-        int mathCounter1 = new Random().nextInt(listMathQs.size()-1);
+        int mathCounter1 = new Random().nextInt(difficulty);
 
         if(listMathQs.size() > 0) {
             if(ed1.getText().toString().equals(listMathAs.get(mathCounter))){
                 tw1.setText(listMathQs.get(mathCounter1));
                 ed1.getText().clear();
 
-                System.out.println(mathCounter);
-                System.out.println(listMathQs.get(mathCounter));
-                System.out.println(listMathAs.get(mathCounter));
+                System.out.println("spm: " + listMathQs.get(mathCounter));
+                System.out.println("svar: " + listMathAs.get(mathCounter));
                 System.out.println("mathcounter: " + mathCounter);
                 System.out.println("mathcounter1: " + mathCounter1);
 
@@ -181,12 +198,6 @@ public class NewGame extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.game_navbar, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
 
@@ -194,12 +205,6 @@ public class NewGame extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
-        }
-
-        if(id == R.id.toolbar_settings_icon){
-            Toast.makeText(NewGame.this, "Settings clicked", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, Settings.class);
-            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
