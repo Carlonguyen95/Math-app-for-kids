@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="stringMathQs">
+    <string-array name="stringMathQs">
         <item name="1">2 + 2</item>
         <item name="2">5 + 7</item>
         <item name="3">10 + 3</item>
         <item name="4">5 + 5</item>
         <item name="5">8 + 3</item>
 
-    </array>
+    </string-array>
 
-    <array name="stringMathAs">
+    <string-array name="stringMathAs">
         <item name="1">4</item>
         <item name="2">12</item>
         <item name="3">13</item>
@@ -39,5 +39,5 @@
         <item name="23">63</item>
         <item name="24">8</item>
         <item name="25">32</item>
-    </array>
+    </string-array>
 </resources>

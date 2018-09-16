@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -25,13 +24,11 @@ public class NewGame extends AppCompatActivity {
     Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_clear, btn_ok;
     EditText ed1;
     List<String> listMathQs;
-    String randomMathQs;
+    List<String> listMathAs;
     TextView tw1;
     TextView textQuestionTW;
     RadioButton rb_setting;
     int mathCounter;
-    String[] mathAs;
-    String mathSolution;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +43,10 @@ public class NewGame extends AppCompatActivity {
         // Henter vanskelighetsgrad
         //rb_setting = (RadioButton)findViewById(R.id.)
 
-        // Henter mattespørsmålene fra arrays.xml og putter dem i ArrayList
+        // Henter mattespørsmålene og svar fra arrays.xml og putter dem i ArrayList
         listMathQs = new ArrayList();
+        listMathAs = new ArrayList();
+        listMathAs = Arrays.asList(getResources().getStringArray(R.array.stringMathAs));
         listMathQs = Arrays.asList(getResources().getStringArray(R.array.stringMathQs));
         mathCounter = new Random().nextInt(listMathQs.size()-1);
 
@@ -153,10 +152,22 @@ public class NewGame extends AppCompatActivity {
     }
 
     public void newMathQuestion(){
-        mathCounter = new Random().nextInt(listMathQs.size()-1);
+        int mathCounter1 = new Random().nextInt(listMathQs.size()-1);
+
         if(listMathQs.size() > 0) {
-            tw1.setText(listMathQs.get(mathCounter));
-            ed1.getText().clear();
+            if(ed1.getText().toString().equals(listMathAs.get(mathCounter))){
+                tw1.setText(listMathQs.get(mathCounter1));
+                ed1.getText().clear();
+
+                System.out.println(mathCounter);
+                System.out.println(listMathQs.get(mathCounter));
+                System.out.println(listMathAs.get(mathCounter));
+
+                listMathQs.remove(mathCounter);
+                mathCounter = mathCounter1;
+            }else{
+                return;
+            }
         }else{
             ed1.getText().clear();
             textQuestionTW.setText(ed1.getText() + "Finito!");
