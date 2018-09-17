@@ -1,5 +1,7 @@
 package com.carlonguyen.s315613mappe1;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +21,7 @@ import java.util.Random;
 
 public class NewGame extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences;
     private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_clear, btn_ok;
     private EditText ed1;
     private List<String> listMathQs;
@@ -26,9 +29,7 @@ public class NewGame extends AppCompatActivity {
     private TextView tw1;
     private TextView textQuestionTW;
     private int mathCounter;
-    private int difficulty;
-    private RadioButton btn_easymode1, btn_mediummode1, btn_hardmode1;
-    private RadioGroup radioGroup;
+    private int difficulty = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,30 +151,14 @@ public class NewGame extends AppCompatActivity {
         });
 
         // Henter vanskelighetsgrad
-        radioGroup = (RadioGroup)findViewById(R.id.btnrg_settings);
-        btn_easymode1 = (RadioButton)findViewById(R.id.btn_easymode);
-        btn_mediummode1 = (RadioButton)findViewById(R.id.btn_mediummode);
-        btn_hardmode1 = (RadioButton)findViewById(R.id.btn_hardmode);
-
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId == R.id.btn_easymode){
-                    difficulty = 4;
-                    mathCounter = new Random().nextInt(difficulty);
-                }else if(checkedId == R.id.btn_mediummode){
-                    difficulty = 9;
-                    mathCounter = new Random().nextInt(difficulty);
-                }else{
-                    difficulty = 24;
-                    mathCounter = new Random().nextInt(difficulty);
-                }
-            }
-        });
-
+        difficulty = getSharedPreferences("DifficultyLevel", MODE_PRIVATE)
+                    .getInt("DifficultyLevel", 4);
+        mathCounter = new Random().nextInt(difficulty);
     }
 
     public void newMathQuestion(){
+        System.out.println("Difficulty: " + difficulty);
+        System.out.println("Strl på listen er: " + listMathQs.size());
         int mathCounter1 = new Random().nextInt(difficulty);
 
         if(listMathQs.size() > 0) {
@@ -188,6 +173,7 @@ public class NewGame extends AppCompatActivity {
 
                 listMathQs.remove(mathCounter);
                 mathCounter = mathCounter1;
+
             }else{
                 return;
             }
@@ -199,8 +185,6 @@ public class NewGame extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        int id = item.getItemId();
-
         switch(item.getItemId()){
             case android.R.id.home:
                 onBackPressed();
