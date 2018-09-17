@@ -28,6 +28,13 @@ public class Home extends AppCompatActivity {
                 openSettingActivity();
             }
         });
+
+        final ImageButton gameStatsBtn = (ImageButton)findViewById(R.id.gameStatsBtn);
+        gameStatsBtn.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                openStatsActivity();
+            }
+        });
     }
 
     public void openNewGame(){
@@ -37,8 +44,12 @@ public class Home extends AppCompatActivity {
     }
 
     public void openSettingActivity(){
-        Toast.makeText(Home.this, "Settings clicked!", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, Settings.class);
+        startActivity(intent);
+    }
+
+    public void openStatsActivity(){
+        Intent intent = new Intent(this, Stats.class);
         startActivity(intent);
     }
 }

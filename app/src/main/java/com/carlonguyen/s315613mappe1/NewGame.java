@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -24,12 +25,13 @@ public class NewGame extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_clear, btn_ok;
     private EditText ed1;
-    private List<String> listMathQs;
-    private List<String> listMathAs;
+    private String arrayMathAs[];
+    private String arrayMathQs[];
+    private List<Integer> listRndMath;
     private TextView tw1;
     private TextView textQuestionTW;
     private int mathCounter;
-    private int difficulty = 4;
+    private int difficulty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,19 +43,9 @@ public class NewGame extends AppCompatActivity {
         setSupportActionBar(gameToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Henter mattespørsmålene og svar fra arrays.xml og putter dem i ArrayList
-        listMathQs = new ArrayList();
-        listMathAs = new ArrayList();
-
-        listMathQs.addAll(Arrays.asList(getResources().getStringArray(R.array.stringMathQs)));
-        listMathAs.addAll(Arrays.asList(getResources().getStringArray(R.array.stringMathAs)));
-
-        //listMathAs = Arrays.asList(getResources().getStringArray(R.array.stringMathAs));
-        //listMathQs = Arrays.asList(getResources().getStringArray(R.array.stringMathQs));
-
-        textQuestionTW = (TextView)findViewById(R.id.textQuestion);
-        tw1 = (TextView)findViewById(R.id.mathQuestionTextView);
-        tw1.setText(listMathQs.get(mathCounter));
+        // Henter vanskelighetsgrad
+        difficulty = getSharedPreferences("DifficultyLevel", MODE_PRIVATE)
+                .getInt("DifficultyLevel", 4);
 
         // Henter knapper til kalkulator
         btn_1 = (Button)findViewById(R.id.btn_1);
@@ -150,33 +142,34 @@ public class NewGame extends AppCompatActivity {
             }
         });
 
-        // Henter vanskelighetsgrad
-        difficulty = getSharedPreferences("DifficultyLevel", MODE_PRIVATE)
-                    .getInt("DifficultyLevel", 4);
-        mathCounter = new Random().nextInt(difficulty);
+        // Henter mattespørsmål og svar
+        arrayMathQs = new String[25];
+        arrayMathAs = new String[25];
+        arrayMathQs = getResources().getStringArray(R.array.stringMathQs);
+        arrayMathAs = getResources().getStringArray(R.array.stringMathAs);
+
+        // Fyller hjelpeliste med tall fra n til antall spm(fra settings) og shuffler listen
+        listRndMath = new ArrayList<>();
+        for(int i = 0; i < difficulty; i++){
+            listRndMath.add(i);
+        }
+        Collections.shuffle(listRndMath);
+
+        // Displayer spm på skjermen
+        textQuestionTW = (TextView)findViewById(R.id.textQuestion);
+        tw1 = (TextView)findViewById(R.id.mathQuestionTextView);
+        tw1.setText(arrayMathQs[(listRndMath.get(mathCounter))]);
     }
 
     public void newMathQuestion(){
-        System.out.println("Difficulty: " + difficulty);
-        System.out.println("Strl på listen er: " + listMathQs.size());
-        int mathCounter1 = new Random().nextInt(difficulty);
-
-        if(listMathQs.size() > 0) {
-            if(ed1.getText().toString().equals(listMathAs.get(mathCounter))){
-                tw1.setText(listMathQs.get(mathCounter1));
-                ed1.getText().clear();
-
-                System.out.println("spm: " + listMathQs.get(mathCounter));
-                System.out.println("svar: " + listMathAs.get(mathCounter));
-                System.out.println("mathcounter: " + mathCounter);
-                System.out.println("mathcounter1: " + mathCounter1);
-
-                listMathQs.remove(mathCounter);
-                mathCounter = mathCounter1;
-
+        if(difficulty > mathCounter) {
+            if(ed1.getText().toString().equals(arrayMathAs[(listRndMath.get(mathCounter))])){
+                mathCounter++;
             }else{
-                return;
+                System.out.println("ops");
             }
+            tw1.setText(arrayMathQs[(listRndMath.get(mathCounter))]);
+            ed1.getText().clear();
         }else{
             ed1.getText().clear();
             textQuestionTW.setText(ed1.getText() + "Finito!");
