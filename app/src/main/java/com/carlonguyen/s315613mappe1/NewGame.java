@@ -1,7 +1,5 @@
 package com.carlonguyen.s315613mappe1;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,19 +8,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class NewGame extends AppCompatActivity {
 
-    SharedPreferences sharedPreferences;
     private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_clear, btn_ok;
     private EditText ed1;
     private String arrayMathAs[];
@@ -32,6 +26,8 @@ public class NewGame extends AppCompatActivity {
     private TextView textQuestionTW;
     private int mathCounter;
     private int difficulty;
+    private int mathPoints = 0;
+    private int mathFails = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,14 +156,25 @@ public class NewGame extends AppCompatActivity {
         textQuestionTW = (TextView)findViewById(R.id.textQuestion);
         tw1 = (TextView)findViewById(R.id.mathQuestionTextView);
         tw1.setText(arrayMathQs[(listRndMath.get(mathCounter))]);
+
+        getSharedPreferences("MATH_STATS", MODE_PRIVATE)
+                .edit()
+                .putInt("MATH_POINTS", mathPoints)
+                .putInt("MATH_FAILS", mathFails)
+                .apply();
     }
 
     public void newMathQuestion(){
         if(mathCounter > 0) {
             if(ed1.getText().toString().equals(arrayMathAs[(listRndMath.get(mathCounter))])){
                 mathCounter--;
+                mathPoints++;
             }else{
-                System.out.println("Someting Wong");
+                mathCounter--;
+                mathFails++;
+                tw1.setText(arrayMathQs[(listRndMath.get(mathCounter))]);
+                Toast.makeText(this, "Feil svar. Prøv igjen!", Toast.LENGTH_SHORT).show();
+                System.out.println("Feil: " + mathFails);
             }
             tw1.setText(arrayMathQs[(listRndMath.get(mathCounter))]);
             ed1.getText().clear();
@@ -186,5 +193,4 @@ public class NewGame extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

@@ -51,8 +51,6 @@ public class Settings extends AppCompatActivity {
                         SavePreferences(KEY_SAVED_RADIO_BUTTON_INDEX, checkedIndex);
                         break;
                 }
-
-                //SavePreferences(KEY_SAVED_RADIO_BUTTON_INDEX, checkedIndex);
             }
         });
 
@@ -93,7 +91,6 @@ public class Settings extends AppCompatActivity {
 
         LoadPreferences();
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){

@@ -18,9 +18,10 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textAlignment="center"
-    android:text="STATS SHOWN HERE"/>
+        android:id="@+id/stats_tw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="STATS SHOWN HERE"/>
 
 </LinearLayout>
