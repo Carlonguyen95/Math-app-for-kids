@@ -154,6 +154,7 @@ public class NewGame extends AppCompatActivity {
             listRndMath.add(i);
         }
         Collections.shuffle(listRndMath);
+        mathCounter = listRndMath.size()-1;
 
         // Displayer spm på skjermen
         textQuestionTW = (TextView)findViewById(R.id.textQuestion);
@@ -162,11 +163,11 @@ public class NewGame extends AppCompatActivity {
     }
 
     public void newMathQuestion(){
-        if(difficulty > mathCounter) {
+        if(mathCounter > 0) {
             if(ed1.getText().toString().equals(arrayMathAs[(listRndMath.get(mathCounter))])){
-                mathCounter++;
+                mathCounter--;
             }else{
-                System.out.println("ops");
+                System.out.println("Someting Wong");
             }
             tw1.setText(arrayMathQs[(listRndMath.get(mathCounter))]);
             ed1.getText().clear();

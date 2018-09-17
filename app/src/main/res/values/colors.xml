@@ -7,6 +7,6 @@
     <color name="border_color">#000000</color>
     <color name="calculator_textcolor">#FFF</color>
     <color name="navbar_color">#3093c8</color>
-    <color name="calculator_btncolor">#50FFFFFF</color>
+    <color name="calculator_btncolor">#80FFFFFF</color>
     <color name="math_question_color">#FFF</color>
 </resources>
