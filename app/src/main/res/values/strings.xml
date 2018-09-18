@@ -27,4 +27,11 @@
     <string name="easymode">Lett (5)</string>
     <string name="mediummode">Medium (10)</string>
     <string name="hardmode">Vanskelig (25)</string>
+
+    //Verdier til newgame
+    <string name="finishText">Gratulerer! Spill på nytt?</string>
+    <string name="wrongAnswer">Ops! Feil svar!</string>
+    <string name="dialogYes">Ja</string>
+    <string name="dialogNo">Nei</string>
+    <string name="newGameStarted">Nytt spill startet!</string>
 </resources>

@@ -38,7 +38,6 @@ public class Home extends AppCompatActivity {
     }
 
     public void openNewGame(){
-        Toast.makeText(Home.this, "New game started!", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, NewGame.class);
         startActivity(intent);
     }

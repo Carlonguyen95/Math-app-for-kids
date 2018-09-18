@@ -14,4 +14,12 @@
     <string name="easymode">Einfach (5)</string>
     <string name="mediummode">Mittel (10)</string>
     <string name="hardmode">Hart (25)</string>
+
+    //Verdier til newgame
+    <string name="finishText">Herzlichen Glückwunsch ! Wieder spielen?</string>
+    <string name="wrongAnswer">Ops! Falsche Antwort!</string>
+    <string name="dialogYes">Ja</string>
+    <string name="dialogNo">Nein</string>
+    <string name="newGameStarted">Neues Spiel hat begonnen!</string>
+
 </resources>

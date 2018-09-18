@@ -1,5 +1,7 @@
 package com.carlonguyen.s315613mappe1;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -24,9 +26,8 @@ public class NewGame extends AppCompatActivity {
     private List<Integer> listRndMath;
     private TextView tw1;
     private TextView textQuestionTW;
-    private int mathCounter;
     private int difficulty;
-    private int mathPoints = 0;
+    private int mathPoints = 1;
     private int mathFails = 0;
 
     @Override
@@ -146,42 +147,66 @@ public class NewGame extends AppCompatActivity {
 
         // Fyller hjelpeliste med tall fra n til antall spm(fra settings) og shuffler listen
         listRndMath = new ArrayList<>();
-        for(int i = 0; i < difficulty; i++){
+        for(int i = 0; i <= difficulty; i++){
             listRndMath.add(i);
         }
         Collections.shuffle(listRndMath);
-        mathCounter = listRndMath.size()-1;
 
         // Displayer spm på skjermen
         textQuestionTW = (TextView)findViewById(R.id.textQuestion);
         tw1 = (TextView)findViewById(R.id.mathQuestionTextView);
-        tw1.setText(arrayMathQs[(listRndMath.get(mathCounter))]);
-
-        getSharedPreferences("MATH_STATS", MODE_PRIVATE)
-                .edit()
-                .putInt("MATH_POINTS", mathPoints)
-                .putInt("MATH_FAILS", mathFails)
-                .apply();
+        tw1.setText(arrayMathQs[(listRndMath.get(difficulty))]);
     }
 
     public void newMathQuestion(){
-        if(mathCounter > 0) {
-            if(ed1.getText().toString().equals(arrayMathAs[(listRndMath.get(mathCounter))])){
-                mathCounter--;
+        if(difficulty > 0) {
+            if(ed1.getText().toString().equals(arrayMathAs[(listRndMath.get(difficulty))])){
+                difficulty--;
                 mathPoints++;
             }else{
-                mathCounter--;
+                difficulty--;
                 mathFails++;
-                tw1.setText(arrayMathQs[(listRndMath.get(mathCounter))]);
-                Toast.makeText(this, "Feil svar. Prøv igjen!", Toast.LENGTH_SHORT).show();
-                System.out.println("Feil: " + mathFails);
+                tw1.setText(arrayMathQs[(listRndMath.get(difficulty))]);
+                Toast.makeText(this, "Feil svar!", Toast.LENGTH_SHORT).show();
             }
-            tw1.setText(arrayMathQs[(listRndMath.get(mathCounter))]);
+            tw1.setText(arrayMathQs[(listRndMath.get(difficulty))]);
             ed1.getText().clear();
         }else{
             ed1.getText().clear();
-            textQuestionTW.setText(ed1.getText() + "Finito!");
+            textQuestionTW.setText("");
+            tw1.setText("");
+            dialogEndGame();
+
+            getSharedPreferences("MATH_STATS", MODE_PRIVATE)
+                    .edit()
+                    .putInt("MATH_POINTS", mathPoints)
+                    .putInt("MATH_FAILS", mathFails)
+                    .apply();
         }
+    }
+
+    public void dialogEndGame(){
+        AlertDialog.Builder box = new AlertDialog.Builder(NewGame.this);
+        box.setMessage(getResources().getString(R.string.finishText));
+
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch(which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        recreate();
+                        Toast.makeText(NewGame.this, getResources().getString(R.string.newGameStarted), Toast.LENGTH_SHORT).show();
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        break;
+                }
+            }
+        };
+        box.setPositiveButton(getResources().getString(R.string.dialogYes), dialogClickListener);
+        box.setNegativeButton(getResources().getString(R.string.dialogNo), dialogClickListener);
+
+        AlertDialog dialog = box.create();
+        dialog.show();
     }
 
     @Override
