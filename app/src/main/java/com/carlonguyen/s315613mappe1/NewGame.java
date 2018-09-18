@@ -198,13 +198,14 @@ public class NewGame extends AppCompatActivity {
                         Toast.makeText(NewGame.this, getResources().getString(R.string.newGameStarted), Toast.LENGTH_SHORT).show();
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
+                        onBackPressed();
                         break;
                 }
             }
         };
         box.setPositiveButton(getResources().getString(R.string.dialogYes), dialogClickListener);
         box.setNegativeButton(getResources().getString(R.string.dialogNo), dialogClickListener);
-
+        box.setCancelable(false);
         AlertDialog dialog = box.create();
         dialog.show();
     }

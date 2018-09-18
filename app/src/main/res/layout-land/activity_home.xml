@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_bgcolor"
-    android:orientation="vertical"
     tools:context=".Home">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/mathlogo"/>
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/mathlogo" />
 
     <ImageButton
         android:id="@+id/gameStartBtn"
-        android:layout_width="match_parent"
+        android:layout_width="115dp"
         android:layout_height="115dp"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_below="@+id/imageView"
         android:background="@drawable/home_button_shape"
         android:src="@drawable/playlogo1" />
 
     <ImageButton
         android:id="@+id/gameStatsBtn"
-        android:layout_width="match_parent"
+        android:layout_width="115dp"
         android:layout_height="115dp"
-        android:layout_marginTop="5dp"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/home_button_shape"
         android:src="@drawable/statslogo" />
 
     <ImageButton
         android:id="@+id/gameSettingsBtn"
-        android:layout_width="match_parent"
+        android:layout_width="115dp"
         android:layout_height="115dp"
-        android:layout_marginTop="5dp"
+        android:layout_alignEnd="@+id/imageView"
+        android:layout_below="@+id/imageView"
         android:background="@drawable/home_button_shape"
         android:src="@drawable/settingslogo1" />
 
-</LinearLayout>
+</RelativeLayout>
