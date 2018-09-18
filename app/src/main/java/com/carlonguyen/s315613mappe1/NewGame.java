@@ -1,6 +1,7 @@
 package com.carlonguyen.s315613mappe1;
 
 import android.content.DialogInterface;
+import android.os.Parcelable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -144,9 +145,17 @@ public class NewGame extends AppCompatActivity {
         arrayMathAs = new String[25];
         arrayMathQs = getResources().getStringArray(R.array.stringMathQs);
         arrayMathAs = getResources().getStringArray(R.array.stringMathAs);
-
-        // Fyller hjelpeliste med tall fra n til antall spm(fra settings) og shuffler listen
         listRndMath = new ArrayList<>();
+
+        if(savedInstanceState != null){
+            onRestoreInstanceState(savedInstanceState);
+        }else {
+            startNewGame();
+        }
+    }
+
+    public void startNewGame(){
+        // Fyller hjelpeliste med tall fra n til antall spm(fra settings) og shuffler listen
         for(int i = 0; i <= difficulty; i++){
             listRndMath.add(i);
         }
@@ -167,7 +176,7 @@ public class NewGame extends AppCompatActivity {
                 difficulty--;
                 mathFails++;
                 tw1.setText(arrayMathQs[(listRndMath.get(difficulty))]);
-                Toast.makeText(this, "Feil svar!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.wrongAnswer), Toast.LENGTH_SHORT).show();
             }
             tw1.setText(arrayMathQs[(listRndMath.get(difficulty))]);
             ed1.getText().clear();
@@ -210,13 +219,55 @@ public class NewGame extends AppCompatActivity {
         dialog.show();
     }
 
+    public void dialogQuitGame(){
+        AlertDialog.Builder box = new AlertDialog.Builder(NewGame.this);
+        box.setMessage(getResources().getString(R.string.quitGame));
+
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch(which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        onBackPressed();
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        break;
+                }
+            }
+        };
+        box.setPositiveButton(getResources().getString(R.string.dialogYes), dialogClickListener);
+        box.setNegativeButton(getResources().getString(R.string.dialogNo), dialogClickListener);
+        box.setCancelable(false);
+        AlertDialog dialog = box.create();
+        dialog.show();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){
             case android.R.id.home:
-                onBackPressed();
+                dialogQuitGame();
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+
+        savedInstanceState.putInt("INDEX_COUNTER", difficulty);
+        savedInstanceState.putInt("MATH_POINTS", mathPoints);
+        savedInstanceState.putInt("MATH_FAILS", mathFails);
+        savedInstanceState.putIntegerArrayList("ArrayList", (ArrayList<Integer>) listRndMath);
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    protected void onRestoreInstanceState(Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
+
+        difficulty = savedInstanceState.getInt("INDEX_COUNTER", difficulty);
+        mathPoints = savedInstanceState.getInt("MATH_POINTS", mathPoints);
+        mathFails = savedInstanceState.getInt("MATH_FAILS", mathFails);
+        listRndMath = savedInstanceState.getIntegerArrayList("ArrayList");
     }
 }

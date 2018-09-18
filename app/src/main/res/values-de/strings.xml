@@ -21,5 +21,6 @@
     <string name="dialogYes">Ja</string>
     <string name="dialogNo">Nein</string>
     <string name="newGameStarted">Neues Spiel hat begonnen!</string>
+    <string name="quitGame">Spiel beenden?</string>
 
 </resources>

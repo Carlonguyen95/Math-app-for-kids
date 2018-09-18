@@ -20,12 +20,11 @@
         android:id="@+id/textQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp"
         android:textSize="20sp"
         android:layout_below="@id/my_toolbar"
+        android:layout_toEndOf="@+id/btn_3"
         android:text="@string/textQuestion"
+        android:layout_marginLeft="60dp"
         android:textAlignment="center"
         android:textColor="@color/math_question_color"/>
 
@@ -33,12 +32,10 @@
         android:id="@+id/mathQuestionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@id/edText1"
         android:textSize="20sp"
         android:layout_below="@id/textQuestion"
-        android:text="TextView"
+        android:layout_toEndOf="@+id/btn_3"
+        android:layout_marginLeft="60dp"
         android:textAlignment="center"
         android:textColor="@color/math_question_color"/>
 
@@ -46,29 +43,32 @@
         android:id="@+id/edText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@id/btn_2"
+        android:layout_below="@+id/mathQuestionTextView"
+        android:layout_toEndOf="@+id/btn_3"
         android:textAlignment="center"
+        android:layout_marginLeft="60dp"
         android:textSize="50sp"/>
 
-    <Button android:textSize="20sp"
+    <Button
         android:id="@+id/btn_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/btn_5"
-        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/btn_5"
+        android:layout_toEndOf="@+id/btn_1"
+        android:background="@drawable/landscape_newgame_button_shape"
         android:text="@string/calcBtn2"
-        android:background="@drawable/landscape_newgame_button_shape"/>
+        android:textSize="20sp" />
 
-    <Button android:textSize="20sp"
+    <Button
         android:id="@+id/btn_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toStartOf="@+id/btn_2"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
         android:layout_above="@+id/btn_4"
         android:background="@drawable/landscape_newgame_button_shape"
-        android:text="@string/calcBtn1" />
+        android:text="@string/calcBtn1"
+        android:textSize="20sp" />
 
     <Button android:textSize="20sp"
         android:id="@+id/btn_3"
@@ -80,15 +80,15 @@
         android:text="@string/calcBtn3"
         android:background="@drawable/landscape_newgame_button_shape"/>
 
-    <Button android:textSize="20sp"
+    <Button
         android:id="@+id/btn_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_7"
-        android:layout_toStartOf="@+id/btn_2"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btn_2"
+        android:background="@drawable/landscape_newgame_button_shape"
         android:text="@string/calcBtn4"
-        android:background="@drawable/landscape_newgame_button_shape"/>
+        android:textSize="20sp" />
 
     <Button android:textSize="20sp"
         android:id="@+id/btn_5"
@@ -168,6 +168,6 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:text="@string/calcBtnOK"
-        android:background="@drawable/landscape_newgame_button_shape"/>
+        android:background="@drawable/landscape_ok_button"/>
 
 </RelativeLayout>

@@ -34,4 +34,5 @@
     <string name="dialogYes">Ja</string>
     <string name="dialogNo">Nei</string>
     <string name="newGameStarted">Nytt spill startet!</string>
+    <string name="quitGame">Avslutt spill?</string>
 </resources>
