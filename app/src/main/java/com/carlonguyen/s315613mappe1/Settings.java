@@ -1,12 +1,10 @@
 package com.carlonguyen.s315613mappe1;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -14,15 +12,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import java.util.Locale;
-import java.util.Random;
 
 public class Settings extends AppCompatActivity {
 
     private RadioGroup radioGroup;
     private int difficulty;
+    private String language = "en";
+    private Locale locale;
     final String KEY_SAVED_RADIO_BUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
 
     @Override
@@ -40,15 +38,15 @@ public class Settings extends AppCompatActivity {
                 switch(checkedId){
                     case R.id.btn_easymode:
                         difficulty = 4;
-                        SavePreferences(KEY_SAVED_RADIO_BUTTON_INDEX, checkedIndex);
+                        savePreferences(KEY_SAVED_RADIO_BUTTON_INDEX, checkedIndex);
                         break;
                     case R.id.btn_mediummode:
                         difficulty = 9;
-                        SavePreferences(KEY_SAVED_RADIO_BUTTON_INDEX, checkedIndex);
+                        savePreferences(KEY_SAVED_RADIO_BUTTON_INDEX, checkedIndex);
                         break;
                     case R.id.btn_hardmode:
                         difficulty = 24;
-                        SavePreferences(KEY_SAVED_RADIO_BUTTON_INDEX, checkedIndex);
+                        savePreferences(KEY_SAVED_RADIO_BUTTON_INDEX, checkedIndex);
                         break;
                 }
             }
@@ -62,9 +60,10 @@ public class Settings extends AppCompatActivity {
         final Button changeLanguageBtn = (Button)findViewById(R.id.changeBtn_DE);
         changeLanguageBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String language = "de";
+                language = "de";
                 Context context = getApplicationContext();
-                Locale locale = new Locale(language);
+                locale = new Locale(language);
+                saveLocale(language);
                 Locale.setDefault(locale);
                 Resources res = context.getResources();
                 Configuration config = new Configuration(res.getConfiguration());
@@ -77,9 +76,10 @@ public class Settings extends AppCompatActivity {
         final Button changeLanguageBtn2 = (Button)findViewById(R.id.changeBtn_NO);
         changeLanguageBtn2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String language = "en";
+                language = "en";
                 Context context = getApplicationContext();
-                Locale locale = new Locale(language);
+                locale = new Locale(language);
+                saveLocale(language);
                 Locale.setDefault(locale);
                 Resources res = context.getResources();
                 Configuration config = new Configuration(res.getConfiguration());
@@ -89,7 +89,8 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        LoadPreferences();
+        loadLocale();
+        loadPreferences();
     }
 
     @Override
@@ -102,7 +103,7 @@ public class Settings extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void SavePreferences(String key, int value){
+    private void savePreferences(String key, int value){
         SharedPreferences sharedPreferences = getSharedPreferences("My_Shared_Pref", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(key, value);
@@ -114,10 +115,49 @@ public class Settings extends AppCompatActivity {
                 .apply();
     }
 
-    private void LoadPreferences(){
+    private void loadPreferences(){
         SharedPreferences sharedPreferences = getSharedPreferences("My_Shared_Pref", MODE_PRIVATE);
         int savedRadioIndex = sharedPreferences.getInt(KEY_SAVED_RADIO_BUTTON_INDEX, 0);
         RadioButton savedCheckedRadioButton = (RadioButton)radioGroup.getChildAt(savedRadioIndex);
         savedCheckedRadioButton.setChecked(true);
+    }
+
+    public void saveLocale(String language){
+        getSharedPreferences("Language", MODE_PRIVATE)
+                .edit()
+                .putString("ChosenLanguage", language)
+                .apply();
+    }
+
+    public void loadLocale(){
+        SharedPreferences prefs = getSharedPreferences("language", MODE_PRIVATE);
+        language = prefs.getString("language", "");
+        changeLocale(language);
+    }
+
+    public void changeLocale(String lan){
+        if(lan.equalsIgnoreCase("")){
+            return;
+        }else {
+            language = lan;
+            Context context = getApplicationContext();
+            locale = new Locale(language);
+            Locale.setDefault(locale);
+            Resources res = context.getResources();
+            Configuration config = new Configuration(res.getConfiguration());
+            config.locale = locale;
+            res.updateConfiguration(config, res.getDisplayMetrics());
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        outState.putInt("savedRadioIndex", difficulty);
+    }
+
+    protected void onRestoreInstanceState(Bundle savedInstaceState){
+        super.onRestoreInstanceState(savedInstaceState);
+        difficulty = savedInstaceState.getInt("savedRadioIndex");
     }
 }

@@ -40,4 +40,19 @@ public class Stats extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+
+        outState.putInt("MATH_POINTS", statsMathPoints);
+        outState.putInt("MATH_FAILS", statsMathFails);
+    }
+
+    protected void onRestoreInstanceState(Bundle onRestoreInstanceState){
+        super.onRestoreInstanceState(onRestoreInstanceState);
+
+        statsMathPoints = onRestoreInstanceState.getInt("MATH_POINTS");
+        statsMathFails = onRestoreInstanceState.getInt("MATH_FAILS");
+    }
 }

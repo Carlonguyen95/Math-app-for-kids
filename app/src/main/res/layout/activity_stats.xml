@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="STATS SHOWN HERE"/>
+        android:text="STATS SHOWN HERE"
+        android:textSize="50dp"/>
 
 </LinearLayout>

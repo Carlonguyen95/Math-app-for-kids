@@ -30,6 +30,8 @@
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/norwayflagicon64"
+        android:padding="5dp"
         android:background="@drawable/button_shapesettings"
         android:text="@string/changeLocaleNO" />
 
@@ -37,6 +39,8 @@
         android:id="@+id/changeBtn_DE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/germanflagicon64"
+        android:padding="5dp"
         android:background="@drawable/button_shapesettings"
         android:text="@string/changeLocaleDE" />
 

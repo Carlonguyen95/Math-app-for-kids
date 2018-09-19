@@ -1,6 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradient_bgcolor"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        android:background="@color/navbar_color"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/changeLanguage"
+        android:textSize="24sp"
+        tools:textAlignment="center" />
+
+    <Button
+        android:id="@+id/changeBtn_NO"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/norwayflagicon64"
+        android:padding="5dp"
+        android:background="@drawable/button_shapesettings"
+        android:text="@string/changeLocaleNO" />
+
+    <Button
+        android:id="@+id/changeBtn_DE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/germanflagicon64"
+        android:padding="5dp"
+        android:background="@drawable/button_shapesettings"
+        android:text="@string/changeLocaleDE" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/changeDiff"
+        android:textSize="24sp"
+        tools:textAlignment="center"/>
+
+    <RadioGroup
+        android:id="@+id/btnrg_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:checkedButton="@id/btn_easymode">
+        <RadioButton
+            android:id="@+id/btn_easymode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/easymode"/>
+        <RadioButton
+            android:id="@+id/btn_mediummode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mediummode"/>
+        <RadioButton
+            android:id="@+id/btn_hardmode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hardmode"/>
+    </RadioGroup>
+
+</LinearLayout>
