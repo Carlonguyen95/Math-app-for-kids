@@ -18,22 +18,20 @@ import java.util.Locale;
 public class Settings extends AppCompatActivity {
 
     private int difficulty;
-    private final String KEY_SAVED_RADIO_BUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
     private RadioGroup radioGroup;
-    private String language;
-    private Locale locale;
+    private static String LANGUAGE = "en";
+    private final String KEY_SAVED_RADIO_BUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        loadLanguage();
         setContentView(R.layout.activity_settings);
 
         Toolbar gameToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(gameToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        language = getSharedPreferences("ChosenLanguage", MODE_PRIVATE)
-                .getString("ChosenLanguage", "en");
         radioGroup = (RadioGroup)findViewById(R.id.btnrg_settings);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -61,20 +59,19 @@ public class Settings extends AppCompatActivity {
         final Button changeLanguageBtn = (Button)findViewById(R.id.changeBtn_DE);
         changeLanguageBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                language = getResources().getString(R.string.languageDE);
-                changeLanguage(language);
+                LANGUAGE = getResources().getString(R.string.languageDE);
+                changeLanguage(LANGUAGE);
             }
         });
 
         final Button changeLanguageBtn2 = (Button)findViewById(R.id.changeBtn_NO);
         changeLanguageBtn2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                language = getResources().getString(R.string.languageNO);
-                changeLanguage(language);
+                LANGUAGE = getResources().getString(R.string.languageNO);
+                changeLanguage(LANGUAGE);
             }
         });
 
-        //loadLocale();
         loadPreferences();
     }
 
@@ -109,38 +106,29 @@ public class Settings extends AppCompatActivity {
     }
 
     // Forsøk på å bevare språket ved rotering
-    public void saveLocale(String language){
+    public void saveLanguage(String language){
         getSharedPreferences("ChosenLanguage", MODE_PRIVATE)
                 .edit()
                 .putString("ChosenLanguage", language)
                 .apply();
     }
 
-    public void loadLocale(){
-        changeLocale(language);
-        System.out.println("Load locale: " + language);
-    }
-
-    public void changeLocale(String lan){
-        if(lan.equalsIgnoreCase("")){
-            return;
-        }else {
-            language = lan;
-            Context context = getApplicationContext();
-            locale = new Locale(language);
-            Locale.setDefault(locale);
-            Resources res = context.getResources();
-            Configuration config = new Configuration(res.getConfiguration());
-            config.locale = locale;
-            res.updateConfiguration(config, res.getDisplayMetrics());
-        }
+    public void loadLanguage() {
+        Context context = getApplicationContext();
+        Locale locale = new Locale(LANGUAGE);
+        saveLanguage(LANGUAGE);
+        Locale.setDefault(locale);
+        Resources res = context.getResources();
+        Configuration config = new Configuration(res.getConfiguration());
+        config.locale = locale;
+        res.updateConfiguration(config, res.getDisplayMetrics());
     }
 
     public void changeLanguage(String lan){
-        language = lan;
+        LANGUAGE = lan;
         Context context = getApplicationContext();
-        locale = new Locale(language);
-        saveLocale(language);
+        Locale locale = new Locale(LANGUAGE);
+        saveLanguage(LANGUAGE);
         Locale.setDefault(locale);
         Resources res = context.getResources();
         Configuration config = new Configuration(res.getConfiguration());
@@ -149,4 +137,14 @@ public class Settings extends AppCompatActivity {
         recreate();
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        outState.putString("Language", LANGUAGE);
+    }
+
+    public void onRestoreInstanceState(Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
+        LANGUAGE = savedInstanceState.getString("Language");
+    }
 }
