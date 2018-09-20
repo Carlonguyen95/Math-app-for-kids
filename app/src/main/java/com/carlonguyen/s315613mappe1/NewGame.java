@@ -147,7 +147,18 @@ public class NewGame extends AppCompatActivity {
             }
         });
 
-        newGame();
+        if(savedInstanceState != null) {
+            difficulty = savedInstanceState.getInt("INDEX_COUNTER", difficulty);
+            mathPoints = savedInstanceState.getInt("MATH_POINTS", 0);
+            mathFails = savedInstanceState.getInt("MATH_FAILS", mathFails);
+            listRndMath = savedInstanceState.getIntegerArrayList("ArrayList");
+
+            textQuestionTW = (TextView)findViewById(R.id.textQuestion);
+            tw1 = (TextView)findViewById(R.id.mathQuestionTextView);
+            tw1.setText(arrayMathQs[(listRndMath.get(difficulty))]);
+        }else{
+            newGame();
+        }
     }
 
     public void newGame(){

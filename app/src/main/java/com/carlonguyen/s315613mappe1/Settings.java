@@ -19,7 +19,7 @@ public class Settings extends AppCompatActivity {
 
     private RadioGroup radioGroup;
     private int difficulty;
-    private String language = "en";
+    private String language;
     private Locale locale;
     final String KEY_SAVED_RADIO_BUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
 
@@ -123,16 +123,17 @@ public class Settings extends AppCompatActivity {
     }
 
     public void saveLocale(String language){
-        getSharedPreferences("Language", MODE_PRIVATE)
+        getSharedPreferences("ChosenLanguage", MODE_PRIVATE)
                 .edit()
                 .putString("ChosenLanguage", language)
                 .apply();
     }
 
     public void loadLocale(){
-        SharedPreferences prefs = getSharedPreferences("language", MODE_PRIVATE);
-        language = prefs.getString("language", "");
+        language = getSharedPreferences("ChosenLanguage", MODE_PRIVATE)
+                .getString("ChosenLanguage", "");
         changeLocale(language);
+        System.out.println("Load locale: " + language);
     }
 
     public void changeLocale(String lan){
@@ -154,10 +155,14 @@ public class Settings extends AppCompatActivity {
     public void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
         outState.putInt("savedRadioIndex", difficulty);
+        outState.putString("ChosenLanguage", language);
+        System.out.println("onSave: " + language);
     }
 
     protected void onRestoreInstanceState(Bundle savedInstaceState){
         super.onRestoreInstanceState(savedInstaceState);
         difficulty = savedInstaceState.getInt("savedRadioIndex");
+        language = savedInstaceState.getString("ChosenLanguage");
+        System.out.println("onRestore: " + language);
     }
 }
