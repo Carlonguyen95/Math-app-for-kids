@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Carlos Matematikk</string>
+    <string name="app_name">Pepes Mathschool</string>
     <string name="title">MATEMATIKK</string>
     <string name="gameStartText">Start spill</string>
     <string name="gameStatsText">Statistikk</string>
@@ -27,6 +27,8 @@
     <string name="easymode">Lett (5)</string>
     <string name="mediummode">Medium (10)</string>
     <string name="hardmode">Vanskelig (25)</string>
+    <string name="languageNO">en</string>
+    <string name="languageDE">de</string>
 
     //Verdier til newgame
     <string name="finishText">Gratulerer! Spill på nytt?</string>
@@ -35,4 +37,5 @@
     <string name="dialogNo">Nei</string>
     <string name="newGameStarted">Nytt spill startet!</string>
     <string name="quitGame">Avslutt spill?</string>
+
 </resources>

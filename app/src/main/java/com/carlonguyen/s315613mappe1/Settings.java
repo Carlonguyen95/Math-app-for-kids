@@ -17,17 +17,23 @@ import java.util.Locale;
 
 public class Settings extends AppCompatActivity {
 
-    private RadioGroup radioGroup;
     private int difficulty;
+    private final String KEY_SAVED_RADIO_BUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
+    private RadioGroup radioGroup;
     private String language;
     private Locale locale;
-    final String KEY_SAVED_RADIO_BUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        Toolbar gameToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(gameToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        language = getSharedPreferences("ChosenLanguage", MODE_PRIVATE)
+                .getString("ChosenLanguage", "en");
         radioGroup = (RadioGroup)findViewById(R.id.btnrg_settings);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -52,44 +58,23 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        Toolbar gameToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(gameToolbar);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         final Button changeLanguageBtn = (Button)findViewById(R.id.changeBtn_DE);
         changeLanguageBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                language = "de";
-                Context context = getApplicationContext();
-                locale = new Locale(language);
-                saveLocale(language);
-                Locale.setDefault(locale);
-                Resources res = context.getResources();
-                Configuration config = new Configuration(res.getConfiguration());
-                config.locale = locale;
-                res.updateConfiguration(config, res.getDisplayMetrics());
-                recreate();
+                language = getResources().getString(R.string.languageDE);
+                changeLanguage(language);
             }
         });
 
         final Button changeLanguageBtn2 = (Button)findViewById(R.id.changeBtn_NO);
         changeLanguageBtn2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                language = "en";
-                Context context = getApplicationContext();
-                locale = new Locale(language);
-                saveLocale(language);
-                Locale.setDefault(locale);
-                Resources res = context.getResources();
-                Configuration config = new Configuration(res.getConfiguration());
-                config.locale = locale;
-                res.updateConfiguration(config, res.getDisplayMetrics());
-                recreate();
+                language = getResources().getString(R.string.languageNO);
+                changeLanguage(language);
             }
         });
 
-        loadLocale();
+        //loadLocale();
         loadPreferences();
     }
 
@@ -103,6 +88,7 @@ public class Settings extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // Lagring av vanskelighetsgrad / antall spm fra instilling
     private void savePreferences(String key, int value){
         SharedPreferences sharedPreferences = getSharedPreferences("My_Shared_Pref", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -122,6 +108,7 @@ public class Settings extends AppCompatActivity {
         savedCheckedRadioButton.setChecked(true);
     }
 
+    // Forsøk på å bevare språket ved rotering
     public void saveLocale(String language){
         getSharedPreferences("ChosenLanguage", MODE_PRIVATE)
                 .edit()
@@ -130,8 +117,6 @@ public class Settings extends AppCompatActivity {
     }
 
     public void loadLocale(){
-        language = getSharedPreferences("ChosenLanguage", MODE_PRIVATE)
-                .getString("ChosenLanguage", "");
         changeLocale(language);
         System.out.println("Load locale: " + language);
     }
@@ -151,18 +136,17 @@ public class Settings extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState){
-        super.onSaveInstanceState(outState);
-        outState.putInt("savedRadioIndex", difficulty);
-        outState.putString("ChosenLanguage", language);
-        System.out.println("onSave: " + language);
+    public void changeLanguage(String lan){
+        language = lan;
+        Context context = getApplicationContext();
+        locale = new Locale(language);
+        saveLocale(language);
+        Locale.setDefault(locale);
+        Resources res = context.getResources();
+        Configuration config = new Configuration(res.getConfiguration());
+        config.locale = locale;
+        res.updateConfiguration(config, res.getDisplayMetrics());
+        recreate();
     }
 
-    protected void onRestoreInstanceState(Bundle savedInstaceState){
-        super.onRestoreInstanceState(savedInstaceState);
-        difficulty = savedInstaceState.getInt("savedRadioIndex");
-        language = savedInstaceState.getString("ChosenLanguage");
-        System.out.println("onRestore: " + language);
-    }
 }

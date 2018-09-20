@@ -14,6 +14,8 @@
     <string name="easymode">Einfach (5)</string>
     <string name="mediummode">Mittel (10)</string>
     <string name="hardmode">Hart (25)</string>
+    <string name="languageNO">en</string>
+    <string name="languageDE">de</string>
 
     //Verdier til newgame
     <string name="finishText">Herzlichen Glückwunsch ! Wieder spielen?</string>
