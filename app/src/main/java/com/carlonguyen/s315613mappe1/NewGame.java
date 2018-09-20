@@ -2,9 +2,6 @@ package com.carlonguyen.s315613mappe1;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.os.Parcelable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,20 +17,31 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
+
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 
 public class NewGame extends AppCompatActivity {
 
     private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_clear, btn_ok;
     private EditText ed1;
+    private TextView mathQuestionTW;
+    private TextView mathQuestionLeft;
+
     private String arrayMathAs[];
     private String arrayMathQs[];
     private List<Integer> listRndMath;
-    private TextView tw1;
-    private TextView textQuestionTW;
+
     private int difficulty;
     private int mathPoints = 1;
-    private int mathFails = 0;
+    private int mathFails;
+    private int questionCounter;
+    private int questionLeft;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +52,10 @@ public class NewGame extends AppCompatActivity {
         Toolbar gameToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(gameToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         // Henter vanskelighetsgrad
         difficulty = getSharedPreferences("DifficultyLevel", MODE_PRIVATE)
                 .getInt("DifficultyLevel", 4);
+        questionCounter = questionLeft = difficulty + 1;
 
         // Henter mattespørsmål og svar
         arrayMathQs = new String[25];
@@ -56,7 +64,6 @@ public class NewGame extends AppCompatActivity {
         arrayMathAs = getResources().getStringArray(R.array.stringMathAs);
         listRndMath = new ArrayList<>();
 
-        // Henter knapper til kalkulator
         btn_1 = (Button)findViewById(R.id.btn_1);
         btn_2 = (Button)findViewById(R.id.btn_2);
         btn_3 = (Button)findViewById(R.id.btn_3);
@@ -71,6 +78,8 @@ public class NewGame extends AppCompatActivity {
         ed1 = (EditText)findViewById(R.id.edText1);
         ed1.setInputType(InputType.TYPE_NULL);
         btn_ok = (Button)findViewById(R.id.btn_ok);
+        mathQuestionTW = (TextView)findViewById(R.id.mathQuestionTextView);
+        mathQuestionLeft = (TextView)findViewById(R.id.qCounter);
 
         btn_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,10 +165,11 @@ public class NewGame extends AppCompatActivity {
             mathPoints = savedInstanceState.getInt("MATH_POINTS", 0);
             mathFails = savedInstanceState.getInt("MATH_FAILS", mathFails);
             listRndMath = savedInstanceState.getIntegerArrayList("ArrayList");
-
-            textQuestionTW = (TextView)findViewById(R.id.textQuestion);
-            tw1 = (TextView)findViewById(R.id.mathQuestionTextView);
-            tw1.setText(arrayMathQs[(listRndMath.get(difficulty))]);
+            questionCounter = savedInstanceState.getInt("QUESTION_COUNTER", questionCounter);
+            questionLeft = savedInstanceState.getInt("QUESTION_LEFT", questionLeft);
+            questionCounter = questionLeft = listRndMath.size();
+            mathQuestionTW.setText(arrayMathQs[(listRndMath.get(difficulty))]);
+            mathQuestionLeft.setText(questionLeft + " / " + questionCounter);
         }else{
             newGame();
         }
@@ -174,29 +184,31 @@ public class NewGame extends AppCompatActivity {
             Collections.shuffle(listRndMath);
 
             // Displayer spm på skjermen
-            textQuestionTW = (TextView)findViewById(R.id.textQuestion);
-            tw1 = (TextView)findViewById(R.id.mathQuestionTextView);
-            tw1.setText(arrayMathQs[(listRndMath.get(difficulty))]);
+            mathQuestionTW.setText(arrayMathQs[(listRndMath.get(difficulty))] + " = ");
+            mathQuestionLeft.setText(questionLeft + " / " + questionCounter);
         }else{
             // Displayer spm på skjermen
-            textQuestionTW = (TextView)findViewById(R.id.textQuestion);
-            tw1 = (TextView)findViewById(R.id.mathQuestionTextView);
-            tw1.setText(arrayMathQs[(listRndMath.get(difficulty))]);
+            mathQuestionTW.setText(arrayMathQs[(listRndMath.get(difficulty))]);
         }
     }
 
     public void newMathQuestion(){
         if(difficulty > 0) {
             if(ed1.getText().toString().equals(arrayMathAs[(listRndMath.get(difficulty))])){
+                Toast.makeText(this, getResources().getString(R.string.correctAnswer), Toast.LENGTH_SHORT).show();
                 difficulty--;
                 mathPoints++;
+                questionLeft--;
             }else{
                 difficulty--;
                 mathFails++;
-                tw1.setText(arrayMathQs[(listRndMath.get(difficulty))]);
+                questionLeft--;
+                mathQuestionTW.setText(arrayMathQs[(listRndMath.get(difficulty))] + " = ");
+                mathQuestionLeft.setText(questionLeft + " / " + questionCounter);
                 Toast.makeText(this, getResources().getString(R.string.wrongAnswer), Toast.LENGTH_SHORT).show();
             }
-            tw1.setText(arrayMathQs[(listRndMath.get(difficulty))]);
+            mathQuestionTW.setText(arrayMathQs[(listRndMath.get(difficulty))] + " = ");
+            mathQuestionLeft.setText(questionLeft + " / " + questionCounter);
             ed1.getText().clear();
         }else{
             dialogEndGame();
@@ -272,11 +284,8 @@ public class NewGame extends AppCompatActivity {
     public void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
 
-        System.out.println("ONSAVE");
-        System.out.println(difficulty);
-        System.out.println(mathPoints);
-        System.out.println(mathFails);
-        System.out.println(listRndMath.size());
+        outState.putInt("QUESTION_COUNTER", questionCounter);
+        outState.putInt("QUESTION_LEFT", questionLeft);
         outState.putInt("INDEX_COUNTER", difficulty);
         outState.putInt("MATH_POINTS", mathPoints);
         outState.putInt("MATH_FAILS", mathFails);
@@ -286,14 +295,11 @@ public class NewGame extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState){
         super.onRestoreInstanceState(savedInstanceState);
 
+        questionCounter = savedInstanceState.getInt("QUESTION_COUNTER", questionCounter);
+        questionLeft = savedInstanceState.getInt("QUESTION_LEFT", questionLeft);
         difficulty = savedInstanceState.getInt("INDEX_COUNTER", difficulty);
         mathPoints = savedInstanceState.getInt("MATH_POINTS", mathPoints);
         mathFails = savedInstanceState.getInt("MATH_FAILS", mathFails);
         listRndMath = savedInstanceState.getIntegerArrayList("ArrayList");
-        System.out.println("ONRESTORE");
-        System.out.println(difficulty);
-        System.out.println(mathPoints);
-        System.out.println(mathFails);
-        System.out.println(listRndMath.size());
     }
 }

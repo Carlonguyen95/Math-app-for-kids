@@ -15,12 +15,19 @@ import android.widget.RadioGroup;
 
 import java.util.Locale;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 public class Settings extends AppCompatActivity {
 
     private int difficulty;
     private RadioGroup radioGroup;
     private static String LANGUAGE = "en";
     private final String KEY_SAVED_RADIO_BUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState){

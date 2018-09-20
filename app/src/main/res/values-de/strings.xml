@@ -4,7 +4,7 @@
     <string name="gameStartText">Spiel beginnen</string>
     <string name="gameStatsText">Statistiken</string>
     <string name="gameOptionsText">Optionen</string>
-    <string name="textQuestion">Was ist die Antwort auf:</string>
+    <string name="textQuestion">Fragen</string>
 
     // Verdier til settings
     <string name="changeDiff">Schwierigkeit ändern</string>
@@ -20,6 +20,7 @@
     //Verdier til newgame
     <string name="finishText">Herzlichen Glückwunsch ! Wieder spielen?</string>
     <string name="wrongAnswer">Ops! Falsche Antwort!</string>
+    <string name="correctAnswer">Ja! Richtig!</string>
     <string name="dialogYes">Ja</string>
     <string name="dialogNo">Nein</string>
     <string name="newGameStarted">Neues Spiel hat begonnen!</string>

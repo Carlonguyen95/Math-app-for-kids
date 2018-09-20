@@ -1,16 +1,24 @@
 package com.carlonguyen.s315613mappe1;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 public class Stats extends AppCompatActivity {
 
     private int statsMathPoints;
     private int statsMathFails;
     private TextView tw1;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
