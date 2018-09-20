@@ -20,44 +20,56 @@
         android:id="@+id/textQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
         android:layout_below="@id/my_toolbar"
         android:layout_toEndOf="@+id/btn_3"
         android:text="@string/textQuestion"
-        android:layout_marginLeft="60dp"
-        android:textAlignment="center"/>
+        android:layout_marginLeft="15dp"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/qCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@id/textQuestion"
+        android:layout_below="@id/my_toolbar"
+        android:text="HER"
+        android:textAlignment="center"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/mathQuestionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="50sp"
-        android:layout_below="@id/textQuestion"
-        android:layout_toEndOf="@+id/btn_3"
-        android:layout_marginLeft="60dp"
-        android:textAlignment="center"/>
+        android:layout_alignStart="@+id/textQuestion"
+        android:layout_centerVertical="true"
+        android:text="HER"
+        android:textAlignment="center"
+        android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/edText1"
+        android:id="@+id/answerBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/mathQuestionTextView"
-        android:layout_toEndOf="@+id/btn_3"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/textQuestion"
+        android:maxLength="2"
         android:textAlignment="center"
-        android:layout_marginLeft="60dp"
-        android:textSize="50sp"/>
+        android:textSize="20sp"/>
 
     <Button
+        android:textSize="25dp"
         android:id="@+id/btn_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_5"
         android:layout_toEndOf="@+id/btn_1"
         android:background="@drawable/landscape_newgame_button_shape"
-        android:text="@string/calcBtn2"
-        android:textSize="50sp" />
+        android:text="@string/calcBtn2"/>
 
     <Button
+        android:textSize="25dp"
         android:id="@+id/btn_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,10 +77,10 @@
         android:layout_centerVertical="true"
         android:layout_above="@+id/btn_4"
         android:background="@drawable/landscape_newgame_button_shape"
-        android:text="@string/calcBtn1"
-        android:textSize="50sp" />
+        android:text="@string/calcBtn1"/>
 
-    <Button android:textSize="50sp"
+    <Button
+        android:textSize="25dp"
         android:id="@+id/btn_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,16 +91,17 @@
         android:background="@drawable/landscape_newgame_button_shape"/>
 
     <Button
+        android:textSize="25dp"
         android:id="@+id/btn_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/btn_2"
         android:background="@drawable/landscape_newgame_button_shape"
-        android:text="@string/calcBtn4"
-        android:textSize="50sp" />
+        android:text="@string/calcBtn4"/>
 
-    <Button android:textSize="50sp"
+    <Button
+        android:textSize="25dp"
         android:id="@+id/btn_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -98,7 +111,8 @@
         android:text="@string/calcBtn5"
         android:background="@drawable/landscape_newgame_button_shape"/>
 
-    <Button android:textSize="50sp"
+    <Button
+        android:textSize="25dp"
         android:id="@+id/btn_6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,7 +122,8 @@
         android:text="@string/calcBtn6"
         android:background="@drawable/landscape_newgame_button_shape"/>
 
-    <Button android:textSize="50sp"
+    <Button
+        android:textSize="25dp"
         android:id="@+id/btn_7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -118,7 +133,8 @@
         android:text="@string/calcBtn7"
         android:background="@drawable/landscape_newgame_button_shape"/>
 
-    <Button android:textSize="50sp"
+    <Button
+        android:textSize="25dp"
         android:id="@+id/btn_8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -128,7 +144,8 @@
         android:text="@string/calcBtn8"
         android:background="@drawable/landscape_newgame_button_shape"/>
 
-    <Button android:textSize="50sp"
+    <Button
+        android:textSize="25dp"
         android:id="@+id/btn_9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -138,17 +155,18 @@
         android:text="@string/calcBtn9"
         android:background="@drawable/landscape_newgame_button_shape"/>
 
-    <Button android:textSize="50sp"
+    <ImageButton
         android:id="@+id/btn_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toStartOf="@+id/btn_8"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:text="C"
+        android:src="@drawable/delete_icon_button"
         android:background="@drawable/landscape_newgame_button_shape"/>
 
-    <Button android:textSize="50sp"
+    <Button
+        android:textSize="25dp"
         android:id="@+id/btn_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -158,7 +176,8 @@
         android:text="@string/calcBtn0"
         android:background="@drawable/landscape_newgame_button_shape"/>
 
-    <Button android:textSize="50sp"
+    <Button
+        android:textSize="25dp"
         android:id="@+id/btn_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

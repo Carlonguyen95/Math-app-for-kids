@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +24,8 @@ import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class NewGame extends AppCompatActivity {
 
-    private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_clear, btn_ok;
+    private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_ok;
+    private ImageButton btn_clear;
     private EditText ed1;
     private TextView mathQuestionTW;
     private TextView mathQuestionLeft;
@@ -74,8 +76,8 @@ public class NewGame extends AppCompatActivity {
         btn_8 = (Button)findViewById(R.id.btn_8);
         btn_9 = (Button)findViewById(R.id.btn_9);
         btn_0 = (Button)findViewById(R.id.btn_0);
-        btn_clear = (Button)findViewById(R.id.btn_clear);
-        ed1 = (EditText)findViewById(R.id.edText1);
+        btn_clear = (ImageButton)findViewById(R.id.btn_clear);
+        ed1 = (EditText)findViewById(R.id.answerBox);
         ed1.setInputType(InputType.TYPE_NULL);
         btn_ok = (Button)findViewById(R.id.btn_ok);
         mathQuestionTW = (TextView)findViewById(R.id.mathQuestionTextView);
@@ -168,7 +170,7 @@ public class NewGame extends AppCompatActivity {
             questionCounter = savedInstanceState.getInt("QUESTION_COUNTER", questionCounter);
             questionLeft = savedInstanceState.getInt("QUESTION_LEFT", questionLeft);
             questionCounter = questionLeft = listRndMath.size();
-            mathQuestionTW.setText(arrayMathQs[(listRndMath.get(difficulty))]);
+            mathQuestionTW.setText(arrayMathQs[(listRndMath.get(difficulty))] + " = ");
             mathQuestionLeft.setText(questionLeft + " / " + questionCounter);
         }else{
             newGame();
