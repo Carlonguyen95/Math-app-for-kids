@@ -1,39 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bgcolor"
+    android:background="@color/backgroundColor"
     android:orientation="vertical"
     tools:context=".Home">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
+        android:layout_height="115dp"
+        android:src="@drawable/applogo1"/>
+
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/mathlogo"/>
+        android:text="@string/app_name"
+        android:textColor="@color/apptext_color"
+        android:textSize="30sp"
+        android:textAlignment="center"/>
 
     <ImageButton
         android:id="@+id/gameStartBtn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="115dp"
+        android:layout_gravity="center"
+        android:padding="15dp"
         android:background="@drawable/home_button_shape"
         android:src="@drawable/playlogo1" />
 
     <ImageButton
         android:id="@+id/gameStatsBtn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="115dp"
+        android:padding="15dp"
         android:layout_marginTop="5dp"
+        android:layout_gravity="center"
         android:background="@drawable/home_button_shape"
         android:src="@drawable/statslogo" />
 
     <ImageButton
         android:id="@+id/gameSettingsBtn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="115dp"
+        android:padding="15dp"
         android:layout_marginTop="5dp"
+        android:layout_gravity="center"
         android:background="@drawable/home_button_shape"
         android:src="@drawable/settingslogo1" />
 

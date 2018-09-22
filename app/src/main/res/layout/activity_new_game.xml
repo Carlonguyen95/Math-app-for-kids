@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bgcolor"
+    android:background="@color/backgroundColor"
     tools:context=".NewGame">
 
     <android.support.v7.widget.Toolbar
@@ -26,7 +26,8 @@
         android:layout_marginTop="10dp"
         android:text="@string/textQuestion"
         android:textAlignment="center"
-        android:textSize="30sp" />
+        android:textSize="25sp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/qCounter"
@@ -37,7 +38,8 @@
         android:layout_below="@id/my_toolbar"
         android:layout_toEndOf="@id/textQuestion"
         android:layout_marginTop="10dp"
-        android:textSize="30sp"/>
+        android:textSize="25sp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/mathQuestionTextView"
@@ -48,7 +50,8 @@
         android:layout_marginTop="141dp"
         android:text="HER"
         android:textAlignment="center"
-        android:textSize="50sp" />
+        android:textSize="50sp"
+        android:textColor="@color/math_question_color"/>
 
     <EditText
         android:id="@+id/answerBox"
@@ -59,11 +62,11 @@
         android:layout_marginEnd="40dp"
         android:maxLength="2"
         android:textAlignment="center"
-        android:textDirection="ltr"
-        android:textSize="50sp" />
+        android:textSize="50sp"
+        android:textColor="@color/math_question_color"/>
 
     <Button
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:id="@+id/btn_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,7 +76,7 @@
         android:background="@drawable/button_shape"/>
 
     <Button
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:id="@+id/btn_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,7 +86,7 @@
         android:text="@string/calcBtn1" />
 
     <Button
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:id="@+id/btn_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -94,7 +97,7 @@
         android:background="@drawable/button_shape"/>
 
     <Button
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:id="@+id/btn_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -105,7 +108,7 @@
         android:background="@drawable/button_shape"/>
 
     <Button
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:id="@+id/btn_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -116,7 +119,7 @@
         android:background="@drawable/button_shape"/>
 
     <Button
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:id="@+id/btn_6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -127,7 +130,7 @@
         android:background="@drawable/button_shape"/>
 
     <Button
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:id="@+id/btn_7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -138,7 +141,7 @@
         android:background="@drawable/button_shape"/>
 
     <Button
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:id="@+id/btn_8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -149,7 +152,7 @@
         android:background="@drawable/button_shape"/>
 
     <Button
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:id="@+id/btn_9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -167,10 +170,10 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:src="@drawable/delete_icon_button"
-        android:background="@drawable/button_shape"/>
+        android:background="@drawable/clear_button"/>
 
     <Button
-        android:textSize="25dp"
+        android:textSize="27dp"
         android:id="@+id/btn_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -180,15 +183,14 @@
         android:text="@string/calcBtn0"
         android:background="@drawable/button_shape"/>
 
-    <Button
-        android:textSize="25dp"
+    <ImageButton
         android:id="@+id/btn_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/btn_0"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:text="@string/calcBtnOK"
+        android:src="@drawable/done_icon_button"
         android:background="@drawable/ok_button"/>
 
 </RelativeLayout>

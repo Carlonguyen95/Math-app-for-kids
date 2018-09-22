@@ -24,8 +24,9 @@ import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class NewGame extends AppCompatActivity {
 
-    private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_ok;
+    private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0;
     private ImageButton btn_clear;
+    private ImageButton btn_ok;
     private EditText ed1;
     private TextView mathQuestionTW;
     private TextView mathQuestionLeft;
@@ -62,9 +63,9 @@ public class NewGame extends AppCompatActivity {
         // Henter mattespørsmål og svar
         arrayMathQs = new String[25];
         arrayMathAs = new String[25];
+        listRndMath = new ArrayList<>();
         arrayMathQs = getResources().getStringArray(R.array.stringMathQs);
         arrayMathAs = getResources().getStringArray(R.array.stringMathAs);
-        listRndMath = new ArrayList<>();
 
         btn_1 = (Button)findViewById(R.id.btn_1);
         btn_2 = (Button)findViewById(R.id.btn_2);
@@ -79,7 +80,7 @@ public class NewGame extends AppCompatActivity {
         btn_clear = (ImageButton)findViewById(R.id.btn_clear);
         ed1 = (EditText)findViewById(R.id.answerBox);
         ed1.setInputType(InputType.TYPE_NULL);
-        btn_ok = (Button)findViewById(R.id.btn_ok);
+        btn_ok = (ImageButton)findViewById(R.id.btn_ok);
         mathQuestionTW = (TextView)findViewById(R.id.mathQuestionTextView);
         mathQuestionLeft = (TextView)findViewById(R.id.qCounter);
 
@@ -169,7 +170,6 @@ public class NewGame extends AppCompatActivity {
             listRndMath = savedInstanceState.getIntegerArrayList("ArrayList");
             questionCounter = savedInstanceState.getInt("QUESTION_COUNTER", questionCounter);
             questionLeft = savedInstanceState.getInt("QUESTION_LEFT", questionLeft);
-            questionCounter = questionLeft = listRndMath.size();
             mathQuestionTW.setText(arrayMathQs[(listRndMath.get(difficulty))] + " = ");
             mathQuestionLeft.setText(questionLeft + " / " + questionCounter);
         }else{
