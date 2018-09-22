@@ -46,7 +46,7 @@
         android:layout_marginTop="20dp"
         android:drawableRight="@drawable/fail_icon"
         android:textColor="@color/black"
-        android:background="@drawable/textborder"
+        android:background="@drawable/textborder2"
         android:textSize="35sp"/>
 
     <Button

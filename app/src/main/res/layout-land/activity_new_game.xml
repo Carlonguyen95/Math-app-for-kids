@@ -20,25 +20,16 @@
         android:id="@+id/textQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_below="@id/my_toolbar"
         android:layout_toEndOf="@+id/btn_3"
         android:text="@string/textQuestion"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
         android:textAlignment="center"
         android:textSize="20sp"
-        android:textColor="@color/black"/>
-
-    <TextView
-        android:id="@+id/qCounter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@id/textQuestion"
-        android:layout_below="@id/my_toolbar"
-        android:text="HER"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:background="@drawable/textborder"/>
 
     <TextView
         android:id="@+id/mathQuestionTextView"
@@ -48,7 +39,7 @@
         android:layout_centerVertical="true"
         android:text="HER"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:textColor="@color/black"/>
 
     <EditText
@@ -56,11 +47,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/textQuestion"
-        android:maxLength="2"
+        android:layout_toEndOf="@+id/mathQuestionTextView"
+        android:maxLength="3"
         android:textAlignment="center"
-        android:textSize="20sp"
-        android:textColor="@color/black"/>
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/black"/>
 
     <Button
         android:textSize="25dp"
