@@ -13,7 +13,8 @@ public class Stats extends AppCompatActivity {
 
     private int statsMathPoints;
     private int statsMathFails;
-    private TextView tw1;
+    private TextView stats_points;
+    private TextView stats_fails;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -35,8 +36,10 @@ public class Stats extends AppCompatActivity {
         statsMathFails = getSharedPreferences("MATH_STATS", MODE_PRIVATE)
                 .getInt("MATH_FAILS", 0);
 
-        tw1 = (TextView)findViewById(R.id.stats_tw);
-        tw1.setText("Riktig: " + statsMathPoints + " | " + "Feil: " + statsMathFails);
+        stats_points = (TextView)findViewById(R.id.stats_points);
+        stats_points.setText("Riktig: " + statsMathPoints);
+        stats_fails = (TextView)findViewById(R.id.stats_fails);
+        stats_fails.setText("Feil: " + statsMathFails);
     }
 
     @Override

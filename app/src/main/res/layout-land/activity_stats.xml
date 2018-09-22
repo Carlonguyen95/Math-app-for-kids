@@ -18,7 +18,7 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <TextView
-        android:id="@+id/stats_tw"
+        android:id="@+id/stats_points"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"

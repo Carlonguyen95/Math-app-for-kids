@@ -51,7 +51,7 @@
         android:text="HER"
         android:textAlignment="center"
         android:textSize="50sp"
-        android:textColor="@color/math_question_color"/>
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/answerBox"
@@ -63,7 +63,7 @@
         android:maxLength="2"
         android:textAlignment="center"
         android:textSize="50sp"
-        android:textColor="@color/math_question_color"/>
+        android:textColor="@color/black"/>
 
     <Button
         android:textSize="30dp"

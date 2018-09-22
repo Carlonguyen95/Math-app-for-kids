@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bgcolor"
+    android:background="@color/backgroundColor"
     android:orientation="vertical"
     tools:context=".Home">
 
@@ -18,11 +18,18 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <TextView
-        android:id="@+id/stats_tw"
+        android:id="@+id/stats_points"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="STATS SHOWN HERE"
+        android:layout_marginTop="20dp"
+        android:textSize="50dp"/>
+
+    <TextView
+        android:id="@+id/stats_fails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:textSize="50dp"/>
 
 </LinearLayout>

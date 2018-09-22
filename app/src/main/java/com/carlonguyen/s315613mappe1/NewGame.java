@@ -39,7 +39,7 @@ public class NewGame extends AppCompatActivity {
     private int mathPoints = 1;
     private int mathFails;
     private int questionCounter;
-    private int questionLeft;
+    private int questionLeft = 1;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -58,7 +58,7 @@ public class NewGame extends AppCompatActivity {
         // Henter vanskelighetsgrad
         difficulty = getSharedPreferences("DifficultyLevel", MODE_PRIVATE)
                 .getInt("DifficultyLevel", 4);
-        questionCounter = questionLeft = difficulty + 1;
+        questionCounter = difficulty + 1;
 
         // Henter mattespørsmål og svar
         arrayMathQs = new String[25];
@@ -178,6 +178,10 @@ public class NewGame extends AppCompatActivity {
     }
 
     public void newGame(){
+        difficulty = getSharedPreferences("DifficultyLevel", MODE_PRIVATE)
+                .getInt("DifficultyLevel", 4);
+        questionCounter = difficulty + 1;
+        questionLeft = 1;
         if(listRndMath.size() == 0){
             // Fyller hjelpeliste med tall fra n til antall spm(fra settings) og shuffler listen
             for(int i = 0; i <= difficulty; i++){
@@ -189,6 +193,7 @@ public class NewGame extends AppCompatActivity {
             mathQuestionTW.setText(arrayMathQs[(listRndMath.get(difficulty))] + " = ");
             mathQuestionLeft.setText(questionLeft + " / " + questionCounter);
         }else{
+            Collections.shuffle(listRndMath);
             // Displayer spm på skjermen
             mathQuestionTW.setText(arrayMathQs[(listRndMath.get(difficulty))]);
         }
@@ -200,11 +205,11 @@ public class NewGame extends AppCompatActivity {
                 Toast.makeText(this, getResources().getString(R.string.correctAnswer), Toast.LENGTH_SHORT).show();
                 difficulty--;
                 mathPoints++;
-                questionLeft--;
+                questionLeft++;
             }else{
                 difficulty--;
                 mathFails++;
-                questionLeft--;
+                questionLeft++;
                 mathQuestionTW.setText(arrayMathQs[(listRndMath.get(difficulty))] + " = ");
                 mathQuestionLeft.setText(questionLeft + " / " + questionCounter);
                 Toast.makeText(this, getResources().getString(R.string.wrongAnswer), Toast.LENGTH_SHORT).show();
@@ -233,6 +238,7 @@ public class NewGame extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 switch(which){
                     case DialogInterface.BUTTON_POSITIVE:
+                        newGame();
                         recreate();
                         Toast.makeText(NewGame.this, getResources().getString(R.string.newGameStarted), Toast.LENGTH_SHORT).show();
                         break;

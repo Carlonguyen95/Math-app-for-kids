@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:textColor="@color/apptext_color"
-        android:textSize="30sp"
+        android:textSize="33sp"
         android:textAlignment="center"/>
 
     <ImageButton

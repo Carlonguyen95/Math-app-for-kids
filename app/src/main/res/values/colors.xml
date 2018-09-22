@@ -7,12 +7,12 @@
     <color name="black">#000000</color>
     <color name="calculator_text_color">#FFF</color>
 
-    <color name="navbar_color">#7de777</color>
+    <color name="navbar_color">#55883B</color>
 
     //Farger til activity_new_game
     <color name="calculator_btn_color">#c6f7d1</color>
     <color name="math_question_color">#FFF</color>
-    <color name="apptext_color">#FFF</color>
+    <color name="apptext_color">#55883B</color>
 
     //Farger til activity_home
     <color name="home_btn_color">#c6f7d1</color>

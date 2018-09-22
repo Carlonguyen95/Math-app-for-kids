@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bgcolor"
+    android:background="@color/backgroundColor"
     tools:context=".NewGame">
 
     <android.support.v7.widget.Toolbar
@@ -25,7 +25,8 @@
         android:text="@string/textQuestion"
         android:layout_marginLeft="15dp"
         android:textAlignment="center"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/qCounter"
@@ -36,7 +37,8 @@
         android:layout_below="@id/my_toolbar"
         android:text="HER"
         android:textAlignment="center"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/mathQuestionTextView"
@@ -46,7 +48,8 @@
         android:layout_centerVertical="true"
         android:text="HER"
         android:textAlignment="center"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/answerBox"
@@ -56,7 +59,8 @@
         android:layout_toEndOf="@+id/textQuestion"
         android:maxLength="2"
         android:textAlignment="center"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
 
     <Button
         android:textSize="25dp"
@@ -163,7 +167,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:src="@drawable/delete_icon_button"
-        android:background="@drawable/landscape_newgame_button_shape"/>
+        android:background="@drawable/landscape_clear_button"/>
 
     <Button
         android:textSize="25dp"
@@ -176,7 +180,7 @@
         android:text="@string/calcBtn0"
         android:background="@drawable/landscape_newgame_button_shape"/>
 
-    <Button
+    <ImageButton
         android:textSize="25dp"
         android:id="@+id/btn_ok"
         android:layout_width="wrap_content"
@@ -184,7 +188,7 @@
         android:layout_toEndOf="@+id/btn_0"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:text="@string/calcBtnOK"
+        android:src="@drawable/done_icon_button"
         android:background="@drawable/landscape_ok_button"/>
 
 </RelativeLayout>
