@@ -29,7 +29,7 @@ public class NewGame extends AppCompatActivity {
     private ImageButton btn_ok;
     private EditText ed1;
     private TextView mathQuestionTW;
-    private TextView mathQuestionLeft;
+    private TextView mathCounter;
 
     private String arrayMathAs[];
     private String arrayMathQs[];
@@ -82,7 +82,7 @@ public class NewGame extends AppCompatActivity {
         ed1.setInputType(InputType.TYPE_NULL);
         btn_ok = (ImageButton)findViewById(R.id.btn_ok);
         mathQuestionTW = (TextView)findViewById(R.id.mathQuestionTextView);
-        mathQuestionLeft = (TextView)findViewById(R.id.qCounter);
+        mathCounter = (TextView)findViewById(R.id.textQuestion);
 
         btn_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,8 +170,8 @@ public class NewGame extends AppCompatActivity {
             listRndMath = savedInstanceState.getIntegerArrayList("ArrayList");
             questionCounter = savedInstanceState.getInt("QUESTION_COUNTER", questionCounter);
             questionLeft = savedInstanceState.getInt("QUESTION_LEFT", questionLeft);
+            mathCounter.setText(getResources().getString(R.string.textQuestion) + " \t " + " \t " + questionLeft + " / " + questionCounter);
             mathQuestionTW.setText(arrayMathQs[(listRndMath.get(difficulty))] + " = ");
-            mathQuestionLeft.setText(questionLeft + " / " + questionCounter);
         }else{
             newGame();
         }
@@ -190,8 +190,8 @@ public class NewGame extends AppCompatActivity {
             Collections.shuffle(listRndMath);
 
             // Displayer spm på skjermen
+            mathCounter.setText(getResources().getString(R.string.textQuestion) + " \t " + " \t " + questionLeft + " / " + questionCounter);
             mathQuestionTW.setText(arrayMathQs[(listRndMath.get(difficulty))] + " = ");
-            mathQuestionLeft.setText(questionLeft + " / " + questionCounter);
         }else{
             Collections.shuffle(listRndMath);
             // Displayer spm på skjermen
@@ -210,12 +210,12 @@ public class NewGame extends AppCompatActivity {
                 difficulty--;
                 mathFails++;
                 questionLeft++;
+                mathCounter.setText(getResources().getString(R.string.textQuestion) + " \t " + " \t " + questionLeft + " / " + questionCounter);
                 mathQuestionTW.setText(arrayMathQs[(listRndMath.get(difficulty))] + " = ");
-                mathQuestionLeft.setText(questionLeft + " / " + questionCounter);
                 Toast.makeText(this, getResources().getString(R.string.wrongAnswer), Toast.LENGTH_SHORT).show();
             }
+            mathCounter.setText(getResources().getString(R.string.textQuestion) + " \t " + " \t" + questionLeft + " / " + questionCounter);
             mathQuestionTW.setText(arrayMathQs[(listRndMath.get(difficulty))] + " = ");
-            mathQuestionLeft.setText(questionLeft + " / " + questionCounter);
             ed1.getText().clear();
         }else{
             dialogEndGame();

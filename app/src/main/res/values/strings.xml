@@ -4,7 +4,6 @@
     <string name="gameStartText">Start spill</string>
     <string name="gameStatsText">Statistikk</string>
     <string name="gameOptionsText">Preferanser</string>
-    <string name="textQuestion">Spørsmål</string>
 
     // Verdier til kalkulatoren
     <string name="calcBtn1">1</string>
@@ -20,8 +19,8 @@
     <string name="calcBtnOK">OK</string>
 
     // Verdier til settings
-    <string name="changeDiff">Endre vanskelighetsgrad</string>
-    <string name="changeLanguage">Endre språk</string>
+    <string name="changeDiff"><u>Antall spørsmål</u></string>
+    <string name="changeLanguage"><u>Endre språk</u></string>
     <string name="changeLocaleNO">Norsk</string>
     <string name="changeLocaleDE">Tysk</string>
     <string name="easymode">Lett (5)</string>
@@ -31,6 +30,7 @@
     <string name="languageDE">de</string>
 
     //Verdier til newgame
+    <string name="textQuestion">Spørsmål</string>
     <string name="finishText">Gratulerer! Spill på nytt?</string>
     <string name="wrongAnswer">Ops! Feil svar!</string>
     <string name="correctAnswer">Yeah! Korrekt!</string>
@@ -38,5 +38,11 @@
     <string name="dialogNo">Nei</string>
     <string name="newGameStarted">Nytt spill startet!</string>
     <string name="quitGame">Avslutt spill?</string>
+
+    //Verdier til stats
+    <string name="btnClearStats">Nullstill</string>
+    <string name="stats_text1"><u>Statistikk</u></string>
+    <string name="stats_points">Riktig:</string>
+    <string name="stats_fails">Feil:</string>
 
 </resources>
