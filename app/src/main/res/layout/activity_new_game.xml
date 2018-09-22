@@ -32,10 +32,10 @@
 
     <TextView
         android:id="@+id/mathQuestionTextView"
-        android:layout_width="205dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textQuestion"
-        android:paddingLeft="5dp"
+        android:paddingLeft="50dp"
         android:text="her"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -43,10 +43,10 @@
 
     <EditText
         android:id="@+id/answerBox"
-        android:layout_width="130dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/mathQuestionTextView"
-        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/mathQuestionTextView"
         android:backgroundTint="@color/black"
         android:maxLength="3"
         android:textAlignment="center"

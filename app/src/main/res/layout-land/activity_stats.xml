@@ -1,28 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bgcolor"
-    android:orientation="vertical"
+    android:background="@color/backgroundColor"
     tools:context=".Home">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:elevation="4dp"
         android:background="@color/navbar_color"
+        android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <TextView
+        android:id="@+id/stats_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/my_toolbar"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="@string/stats_text1"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="24dp" />
+
+    <ImageButton
+        android:id="@+id/stats_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/stats_text1"
+        android:src="@drawable/stats_img_pepe"/>
 
     <TextView
         android:id="@+id/stats_points"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="50dp"
-        android:text="STATS SHOWN HERE"/>
+        android:layout_below="@id/my_toolbar"
+        android:layout_alignStart="@+id/stats_fails"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/landscape_textborder"
+        android:drawableRight="@drawable/done_icon_button"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/stats_fails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/btn_clear_stats"
+        android:layout_below="@id/stats_points"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/landscape_textborder2"
+        android:drawableRight="@drawable/fail_icon"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btn_clear_stats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/button_clear_stats"
+        android:drawableLeft="@drawable/delete_icon_button"
+        android:text="@string/btnClearStats" />
+
+</RelativeLayout>
