@@ -54,6 +54,6 @@
         android:layout_below="@+id/app_name"
         android:layout_marginLeft="10dp"
         android:background="@drawable/landscape_home_button_shape"
-        android:src="@drawable/settingslogo" />
+        android:src="@drawable/settingslogo1" />
 
 </RelativeLayout>
