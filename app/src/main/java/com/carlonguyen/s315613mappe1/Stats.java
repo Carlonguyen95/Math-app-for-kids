@@ -21,6 +21,7 @@ public class Stats extends AppCompatActivity {
 
     private int statsMathPoints;
     private int statsMathFails;
+
     private TextView stats_points;
     private TextView stats_fails;
     private Button stats_clear_btn;
@@ -60,6 +61,10 @@ public class Stats extends AppCompatActivity {
 
         stats_tips = (ImageButton)findViewById(R.id.stats_tips);
 
+        /**
+         * Her blir et bilde displayet på aktiviteten i "landscape"-mode utifra
+         * resultatet spilleren får ved et fullført spill
+         */
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             if(statsMathFails > statsMathPoints){
                 stats_tips.setImageDrawable(getResources().getDrawable(R.drawable.stats_img_pepe1));
@@ -129,6 +134,9 @@ public class Stats extends AppCompatActivity {
         statsMathFails = onRestoreInstanceState.getInt("MATH_FAILS");
     }
 
+    /**
+     * Denne metoden nullstiller statistikken
+     */
     public void clearStats(){
         statsMathPoints = 0;
         statsMathFails = 0;

@@ -92,7 +92,10 @@ public class Settings extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // Lagring av vanskelighetsgrad / antall spm fra instilling
+    /**
+     * Denne metoden lagrer antall spørsmål som spilleren har valgt til SharedPreferences
+     * Denne variabelen blir brukt videre til å lage et spill
+     */
     private void savePreferences(String key, int value){
         SharedPreferences sharedPreferences = getSharedPreferences("My_Shared_Pref", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -112,7 +115,9 @@ public class Settings extends AppCompatActivity {
         savedCheckedRadioButton.setChecked(true);
     }
 
-    // Forsøk på å bevare språket ved rotering
+    /**
+     * Denne metoden lagrer språket til SharedPreferences
+     */
     public void saveLanguage(String language){
         getSharedPreferences("ChosenLanguage", MODE_PRIVATE)
                 .edit()
@@ -120,6 +125,9 @@ public class Settings extends AppCompatActivity {
                 .apply();
     }
 
+    /**
+     * Denne metoden henter riktig språk
+     */
     public void loadLanguage() {
         Context context = getApplicationContext();
         Locale locale = new Locale(LANGUAGE);
@@ -131,6 +139,9 @@ public class Settings extends AppCompatActivity {
         res.updateConfiguration(config, res.getDisplayMetrics());
     }
 
+    /**
+     * Denne metoden bytter språk
+     */
     public void changeLanguage(String lan){
         LANGUAGE = lan;
         Context context = getApplicationContext();

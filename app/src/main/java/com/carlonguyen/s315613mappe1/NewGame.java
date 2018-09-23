@@ -44,6 +44,7 @@ public class NewGame extends AppCompatActivity {
     private int questionCounter;
     private int questionLeft = 1;
     private static String Language;
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
@@ -160,8 +161,6 @@ public class NewGame extends AppCompatActivity {
                 ed1.getText().clear();
             }
         });
-
-        // Denne knappen sjekker om svaret er riktig og displayer nytt spm
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -183,6 +182,9 @@ public class NewGame extends AppCompatActivity {
         }
     }
 
+    /**
+     * Laster inn riktig språk
+     */
     public void loadLanguage() {
         Context context = getApplicationContext();
         Locale locale = new Locale(Language);
@@ -193,6 +195,14 @@ public class NewGame extends AppCompatActivity {
         res.updateConfiguration(config, res.getDisplayMetrics());
     }
 
+    /**
+     * Denne metoden starter et nytt spill.
+     *
+     * Henter antall spm variabel fra Preferanser og lager en hjelpe-array i gitt strl.
+     * Fyller hjelpe-array med tall og rokkerer dem i tilfeldig rekkefølge
+     * Henter spm og svar ved bruk av hjelpe-array som index
+     * Displayer spm på skjermbildet(new game)
+     */
     public void newGame(){
         difficulty = getSharedPreferences("DifficultyLevel", MODE_PRIVATE)
                 .getInt("DifficultyLevel", 4);
@@ -215,6 +225,11 @@ public class NewGame extends AppCompatActivity {
         }
     }
 
+    /**
+     * Denne metoden sjekker om input(svaret) stemmer overens med svaret fra arrayet som inneholder svaret hentet ifra xml
+     * Ett nytt regnestykket blir henta og displayer på skjermbildet uavhengig om spilleren svarer riktig eller feil
+     * Poeng blir telt opp og lagret til slutt i SharedPreferences
+     */
     public void newMathQuestion(){
         if(difficulty > 0) {
             if(ed1.getText().toString().equals(arrayMathAs[(listRndMath.get(difficulty))])){
@@ -245,6 +260,10 @@ public class NewGame extends AppCompatActivity {
         }
     }
 
+    /**
+     * Denne metoden displayer en dialogboks når et spill er fullført
+     * Spilleren har to valg: starte et nytt spill, eller gå tilbake til "home"-aktivity
+     */
     public void dialogEndGame(){
         AlertDialog.Builder box = new AlertDialog.Builder(NewGame.this);
         box.setMessage(getResources().getString(R.string.finishText));
@@ -271,6 +290,10 @@ public class NewGame extends AppCompatActivity {
         dialog.show();
     }
 
+    /**
+     * Denne metoden displayer en dialogboks når spilleren trykker på tilbake-knappen i toolbaren
+     * Dialogboksen gir mulighet til å avslutte spillet og går tilbake til hovedaktivity
+     */
     public void dialogQuitGame(){
         AlertDialog.Builder box = new AlertDialog.Builder(NewGame.this);
         box.setMessage(getResources().getString(R.string.quitGame));
