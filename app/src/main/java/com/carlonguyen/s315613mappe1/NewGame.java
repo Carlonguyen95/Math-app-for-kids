@@ -2,6 +2,8 @@ package com.carlonguyen.s315613mappe1;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
@@ -40,7 +43,7 @@ public class NewGame extends AppCompatActivity {
     private int mathFails;
     private int questionCounter;
     private int questionLeft = 1;
-
+    private static String Language;
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
@@ -49,6 +52,9 @@ public class NewGame extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Language = getSharedPreferences("ChosenLanguage", MODE_PRIVATE)
+                .getString("ChosenLanguage", "en");
+        loadLanguage();
         setContentView(R.layout.activity_new_game);
 
         // Kode relatert til toolbaren
@@ -175,6 +181,16 @@ public class NewGame extends AppCompatActivity {
         }else{
             newGame();
         }
+    }
+
+    public void loadLanguage() {
+        Context context = getApplicationContext();
+        Locale locale = new Locale(Language);
+        Locale.setDefault(locale);
+        Resources res = context.getResources();
+        Configuration config = new Configuration(res.getConfiguration());
+        config.locale = locale;
+        res.updateConfiguration(config, res.getDisplayMetrics());
     }
 
     public void newGame(){

@@ -1,6 +1,8 @@
 package com.carlonguyen.s315613mappe1;
 
 import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -8,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
@@ -17,8 +21,9 @@ public class Stats extends AppCompatActivity {
     private int statsMathFails;
     private TextView stats_points;
     private TextView stats_fails;
-
     private Button stats_clear_btn;
+
+    private static String Language;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -28,6 +33,9 @@ public class Stats extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        Language = getSharedPreferences("ChosenLanguage", MODE_PRIVATE)
+                .getString("ChosenLanguage", "en");
+        loadLanguage();
         setContentView(R.layout.activity_stats);
 
         Toolbar gameToolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -51,6 +59,16 @@ public class Stats extends AppCompatActivity {
         stats_points.setText(getResources().getString(R.string.stats_points) + " " + statsMathPoints);
         stats_fails = (TextView)findViewById(R.id.stats_fails);
         stats_fails.setText(getResources().getString(R.string.stats_fails) + " " + statsMathFails);
+    }
+
+    public void loadLanguage() {
+        Context context = getApplicationContext();
+        Locale locale = new Locale(Language);
+        Locale.setDefault(locale);
+        Resources res = context.getResources();
+        Configuration config = new Configuration(res.getConfiguration());
+        config.locale = locale;
+        res.updateConfiguration(config, res.getDisplayMetrics());
     }
 
     @Override
@@ -83,5 +101,11 @@ public class Stats extends AppCompatActivity {
         statsMathFails = 0;
         stats_points.setText(getResources().getString(R.string.stats_points) + " " + statsMathPoints);
         stats_fails.setText(getResources().getString(R.string.stats_fails) + " " + statsMathFails);
+
+        getSharedPreferences("MATH_STATS", MODE_PRIVATE)
+                .edit()
+                .putInt("MATH_POINTS", statsMathPoints)
+                .putInt("MATH_FAILS", statsMathFails)
+                .apply();
     }
 }

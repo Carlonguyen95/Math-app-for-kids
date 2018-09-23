@@ -1,77 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/gradient_bgcolor"
-    android:orientation="vertical">
+    android:background="@color/backgroundColor">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:elevation="4dp"
         android:background="@color/navbar_color"
+        android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/settings_text2"
+        android:layout_marginEnd="80dp"
         android:text="@string/changeLanguage"
-        android:textSize="24sp"
-        tools:textAlignment="center" />
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/changeBtn_NO"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/textView"
+        android:background="@drawable/landscape_button_shapesettings"
         android:drawableLeft="@drawable/norwayflagicon64"
         android:padding="5dp"
-        android:background="@drawable/button_shapesettings"
+        android:layout_marginRight="5dp"
         android:text="@string/changeLocaleNO" />
 
     <Button
         android:id="@+id/changeBtn_DE"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/changeBtn_NO"
+        android:background="@drawable/landscape_button_shapesettings"
         android:drawableLeft="@drawable/germanflagicon64"
         android:padding="5dp"
-        android:background="@drawable/button_shapesettings"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
         android:text="@string/changeLocaleDE" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/settings_text2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_below="@id/my_toolbar"
+        android:layout_marginTop="10dp"
         android:text="@string/changeDiff"
-        android:textSize="24sp"
-        tools:textAlignment="center"/>
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
 
     <RadioGroup
         android:id="@+id/btnrg_settings"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
+        android:layout_below="@+id/settings_text2"
         android:checkedButton="@id/btn_easymode">
+
         <RadioButton
             android:id="@+id/btn_easymode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/easymode"/>
+            android:text="@string/easymode" />
+
         <RadioButton
             android:id="@+id/btn_mediummode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/mediummode"/>
+            android:text="@string/mediummode" />
+
         <RadioButton
             android:id="@+id/btn_hardmode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hardmode"/>
+            android:text="@string/hardmode" />
     </RadioGroup>
 
-</LinearLayout>
+</RelativeLayout>
