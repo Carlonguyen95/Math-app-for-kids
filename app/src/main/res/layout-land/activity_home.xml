@@ -21,7 +21,11 @@
         android:text="@string/app_name"
         android:textColor="@color/apptext_color"
         android:textSize="33sp"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:shadowColor="@color/text_shadow"
+        android:shadowDx="10"
+        android:shadowDy="10"
+        android:shadowRadius="20"/>
 
     <ImageButton
         android:id="@+id/gameStartBtn"
@@ -50,6 +54,6 @@
         android:layout_below="@+id/app_name"
         android:layout_marginLeft="10dp"
         android:background="@drawable/landscape_home_button_shape"
-        android:src="@drawable/settingslogo1" />
+        android:src="@drawable/settingslogo" />
 
 </RelativeLayout>

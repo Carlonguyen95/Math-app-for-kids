@@ -3,7 +3,7 @@
         android:width="1dip"
         android:color="#275a0f"/>
     <corners
-        android:radius="24dp"
+        android:radius="20dp"
         />
     <size
         android:width="300dp"

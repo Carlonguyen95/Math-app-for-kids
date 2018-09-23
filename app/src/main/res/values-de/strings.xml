@@ -31,4 +31,7 @@
     <string name="stats_text1"><u>Statistik</u></string>
     <string name="stats_points">Richtig:</string>
     <string name="stats_fails">Falsch:</string>
+    <string name="stats_tips">Nicht schlecht! Mach weiter so!</string>
+    <string name="stats_fail_tips">Übung macht Meister! Gib nicht auf!</string>
+    <string name="stats_default_text">Statistiken bieten einen guten Überblick über die Progression!</string>
 </resources>

@@ -9,7 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -22,6 +24,7 @@ public class Stats extends AppCompatActivity {
     private TextView stats_points;
     private TextView stats_fails;
     private Button stats_clear_btn;
+    private ImageButton stats_tips;
 
     private static String Language;
 
@@ -54,6 +57,36 @@ public class Stats extends AppCompatActivity {
                 .getInt("MATH_POINTS", 0);
         statsMathFails = getSharedPreferences("MATH_STATS", MODE_PRIVATE)
                 .getInt("MATH_FAILS", 0);
+
+        stats_tips = (ImageButton)findViewById(R.id.stats_tips);
+
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            if(statsMathFails > statsMathPoints){
+                stats_tips.setImageDrawable(getResources().getDrawable(R.drawable.stats_img_pepe1));
+                stats_tips.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(Stats.this, getResources().getString(R.string.stats_fail_tips), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }else if(statsMathPoints > statsMathFails){
+                stats_tips.setImageDrawable(getResources().getDrawable(R.drawable.stats_img_pepe));
+                stats_tips.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(Stats.this, getResources().getString(R.string.stats_tips), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }else{
+                stats_tips.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(Stats.this, getResources().getString(R.string.stats_default_text), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }
+
 
         stats_points = (TextView)findViewById(R.id.stats_points);
         stats_points.setText(getResources().getString(R.string.stats_points) + " " + statsMathPoints);

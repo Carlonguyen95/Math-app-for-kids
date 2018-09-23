@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -20,28 +21,30 @@
         android:id="@+id/stats_text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/my_toolbar"
-        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="10dp"
         android:text="@string/stats_text1"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="24dp" />
+        android:textSize="30dp" />
 
     <ImageButton
         android:id="@+id/stats_tips"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/stats_text1"
-        android:src="@drawable/stats_img_pepe"/>
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@null"
+        android:src="@drawable/stats_img_pepe" />
 
     <TextView
         android:id="@+id/stats_points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/my_toolbar"
-        android:layout_alignStart="@+id/stats_fails"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_alignStart="@+id/btn_clear_stats"
         android:background="@drawable/landscape_textborder"
         android:drawableRight="@drawable/done_icon_button"
         android:textColor="@color/black"
@@ -51,9 +54,9 @@
         android:id="@+id/stats_fails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/btn_clear_stats"
-        android:layout_below="@id/stats_points"
         android:layout_marginTop="10dp"
+        android:layout_alignStart="@+id/stats_points"
+        android:layout_below="@+id/stats_points"
         android:background="@drawable/landscape_textborder2"
         android:drawableRight="@drawable/fail_icon"
         android:textColor="@color/black"
@@ -65,8 +68,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/button_clear_stats"
         android:drawableLeft="@drawable/delete_icon_button"
         android:text="@string/btnClearStats" />

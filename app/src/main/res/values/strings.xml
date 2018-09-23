@@ -44,5 +44,9 @@
     <string name="stats_text1"><u>Statistikk</u></string>
     <string name="stats_points">Riktig:</string>
     <string name="stats_fails">Feil:</string>
+    <string name="stats_tips">Ikke dårlig! Fortsett sånn!</string>
+    <string name="stats_fail_tips">Øvelse gjør mester! Ikke gi opp!</string>
+    <string name="stats_default_text">Statistikk gir god oversikt over progresjon!</string>
+
 
 </resources>

@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#55883B</color>
-    <color name="colorPrimaryDark">#275a0f</color>
+    <color name="colorPrimary">#9bff3d</color>
+    <color name="colorPrimaryDark">#64cb00</color>
     <color name="colorAccent">#000000</color>
-    <color name="backgroundColor">#55883B</color>
     <color name="black">#000000</color>
+
+    <color name="navbar_color">#64cb00</color>
+    <color name="backgroundColor">#9bff3d</color>
+    <color name="text_shadow">#FFF</color>
+
     <color name="calculator_text_color">#FFF</color>
 
-    <color name="navbar_color">#275a0f</color>
-
     //Farger til activity_new_game
-    <color name="calculator_btn_color">#84b868</color>
+    <color name="calculator_btn_color">#d1ff74</color>
     <color name="math_question_color">#FFF</color>
-    <color name="apptext_color">#000000</color>
+    <color name="apptext_color">#4d4d4d</color>
     <color name="background_new_game">#b2b2b2</color>
 
     //Farger til activity_home
-    <color name="home_btn_color">#84b868</color>
+    <color name="home_btn_color">#d1ff74</color>
+
 </resources>

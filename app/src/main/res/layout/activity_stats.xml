@@ -18,14 +18,24 @@
 
     <TextView
         android:id="@+id/stats_text1"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_below="@id/my_toolbar"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
         android:text="@string/stats_text1"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="24dp" />
+
+    <ImageButton
+        android:id="@+id/stats_tips"
+        android:layout_width="57dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="35dp"
+        android:layout_below="@id/my_toolbar"
+        android:background="@null"/>
 
     <TextView
         android:id="@+id/stats_points"
